@@ -44,3 +44,4 @@ Response format example:
     }
 }
 `;
+export systemPrompt;
