@@ -1,6 +1,8 @@
+// main.js
 import { OpenAI } from "openai";
 import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
+import { systemPrompt } from "./systemPrompt.js";  // Import the prompt
 
 dotenv.config();
 
