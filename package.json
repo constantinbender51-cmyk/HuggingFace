@@ -1,26 +1,24 @@
 {
-  "name": "huggingface-api-server",
+  "name": "huggingface-api-node",
   "version": "1.0.0",
-  "description": "Hugging Face LLM API server for Railway",
-  "main": "server.js",
+  "description": "Node.js script to call Hugging Face API",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "node test.js",
-    "dev": "nodemon server.js"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "huggingface",
+    "api",
+    "nodejs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "dotenv": "^16.3.1",
-    "node-fetch": "^3.3.2",
-    "cors": "^2.8.5",
-    "morgan": "^1.10.0",
-    "helmet": "^7.1.0"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0",
-    "axios": "^1.6.7"
+    "axios": "^1.6.7",
+    "dotenv": "^16.3.1"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=14.0.0"
   }
 }
