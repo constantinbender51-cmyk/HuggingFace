@@ -2,7 +2,8 @@
 import { OpenAI } from "openai";
 import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
-import { systemPrompt } from "./systemPrompt.js";  // Import the prompt
+import { systemPrompt } from "./systemPrompt.js";
+import { CommandExecutor } from "./commandExecutor.js";
 
 dotenv.config();
 
@@ -11,6 +12,9 @@ const krakenApi = new KrakenFuturesApi(
     process.env.KRAKEN_API_KEY,
     process.env.KRAKEN_API_SECRET
 );
+
+// Initialize Command Executor
+const commandExecutor = new CommandExecutor(krakenApi);
 
 // Initialize OpenAI client for Hugging Face
 const aiClient = new OpenAI({
@@ -36,69 +40,6 @@ async function getAICommand(prompt) {
     }
 }
 
-async function executeCommand(command) {
-    try {
-        console.log(`Executing: ${command.command}`);
-        
-        switch(command.command) {
-            // Public endpoints
-            case 'getInstruments':
-                return await krakenApi.getInstruments();
-            case 'getTickers':
-                return await krakenApi.getTickers();
-            case 'getOrderbook':
-                return await krakenApi.getOrderbook(command.parameters);
-            case 'getHistory':
-                return await krakenApi.getHistory(command.parameters);
-                
-            // Private endpoints
-            case 'getAccounts':
-                return await krakenApi.getAccounts();
-            case 'getOpenPositions':
-                return await krakenApi.getOpenPositions();
-            case 'getOpenOrders':
-                return await krakenApi.getOpenOrders();
-            case 'getRecentOrders':
-                return await krakenApi.getRecentOrders(command.parameters);
-            case 'getFills':
-                return await krakenApi.getFills(command.parameters);
-            case 'getAccountLog':
-                return await krakenApi.getAccountLog();
-            case 'getTransfers':
-                return await krakenApi.getTransfers(command.parameters);
-            case 'getNotifications':
-                return await krakenApi.getNotifications();
-                
-            // Order management
-            case 'sendOrder':
-                return await krakenApi.sendOrder(command.parameters);
-            case 'editOrder':
-                return await krakenApi.editOrder(command.parameters);
-            case 'cancelOrder':
-                return await krakenApi.cancelOrder(command.parameters);
-            case 'cancelAllOrders':
-                return await krakenApi.cancelAllOrders(command.parameters);
-            case 'cancelAllOrdersAfter':
-                return await krakenApi.cancelAllOrdersAfter(command.parameters);
-            case 'batchOrder':
-                return await krakenApi.batchOrder(command.parameters);
-                
-            // Special actions
-            case 'callDeepseekAPI':
-                // Implement your Deepseek API call here
-                return { result: "Deepseek API called", parameters: command.parameters };
-            case 'doNothing':
-                return { status: "No action taken", reason: command.parameters.reason };
-                
-            default:
-                throw new Error(`Unknown command: ${command.command}`);
-        }
-    } catch (error) {
-        console.error(`Execution Error (${command.command}):`, error);
-        throw error;
-    }
-}
-
 async function main() {
     try {
         // Example prompt - you can modify this or get from user input
@@ -108,8 +49,8 @@ async function main() {
         const command = await getAICommand(userPrompt);
         console.log("AI Generated Command:", JSON.stringify(command, null, 2));
         
-        // Execute the command
-        const result = await executeCommand(command);
+        // Execute the command using the CommandExecutor
+        const result = await commandExecutor.executeCommand(command);
         console.log("Execution Result:", JSON.stringify(result, null, 2));
         
     } catch (error) {
@@ -118,3 +59,13 @@ async function main() {
 }
 
 main();
+
+
+
+
+
+
+
+
+
+
