@@ -16,7 +16,6 @@ try {
 
 // MAIN CODE
 import { CommandExecutor } from "./commandExecutor.js";
-import KrakenFuturesApi from "./krakenApi.js";
 
 console.log("Starting application...");
 const executor = new CommandExecutor(new KrakenFuturesApi());
