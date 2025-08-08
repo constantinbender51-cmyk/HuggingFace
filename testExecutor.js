@@ -26,39 +26,6 @@ async function runTests() {
     console.log(process.env.KRAKEN_API_KEY);
     console.log(process.env.KRAKEN_API_SECRET);
     const executor = new CommandExecutor(krakenApi);
-    try {
-        console.log("--- Testing Public GET Request (getTickers) ---");
-        const tickers = await executor.getTickers();
-        console.log("getTickers Success! First 2 Tickers:", JSON.stringify(tickers.tickers.slice(0, 2), null, 2));
-
-        console.log("\n--- Testing Private GET Request (getAccounts) ---");
-        const accounts = await executor.getAccounts();
-        console.log("getAccounts Success! Response:", JSON.stringify(accounts, null, 2));
-
-        console.log("\n--- Testing Private POST Request (sendOrder) ---");
-        // This is an example and will likely fail if you don't have funds or if the price is invalid.
-        // Use a tradeable symbol like 'pf_xbtusd'.
-        const orderParams = {
-            orderType: 'lmt',
-            symbol: 'pf_xbtusd',
-            side: 'buy',
-            size: 1,
-            limitPrice: 1000.00 // Use a price far from the market to avoid execution
-        };
-        const orderResult = await executor.sendOrder(orderParams);
-        console.log("sendOrder Success! Response:", JSON.stringify(orderResult, null, 2));
-
-        // If the order was successful, we can try to cancel it.
-        if (orderResult.sendStatus && orderResult.sendStatus.order_id) {
-            console.log("\n--- Testing Private POST Request (cancelOrder) ---");
-            const cancelParams = { order_id: orderResult.sendStatus.order_id };
-            const cancelResult = await executor.cancelOrder(cancelParams);
-            console.log("cancelOrder Success! Response:", JSON.stringify(cancelResult, null, 2));
-        }
-
-    } catch (e) {
-        console.log("\nExecution halted due to an error.");
-    }
     // --- COMMAND DEFINITIONS ---
     // An array of all commands to test, with required parameters.
     const commandsToTest = [
