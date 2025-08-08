@@ -10,7 +10,7 @@ import { CommandExecutor} from "./commandExecutor.js";
 
 console.log("Starting application...");
 const executor = new CommandExecutor(new KrakenFuturesApi());
-const result = await executor.executeCommand({ test: "command" });
+const result = await executor.executeCommand({ command "getTicker" });
 console.log("Final result:", result);
 
 dotenv.config();
