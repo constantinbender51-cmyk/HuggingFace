@@ -3,6 +3,12 @@ import { OpenAI } from "openai";
 import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
+try {
+  const module = await import('./commandExecutor.js');
+  console.log("Module loaded:", module);
+} catch (err) {
+  console.error("LOAD ERROR:", err);
+}
 import { CommandExecutor } from "./commandExecutor.js";
 import readline from 'readline/promises';
 
