@@ -1,24 +1,26 @@
 {
-  "name": "huggingface-api-node",
+  "name": "huggingface-openai-client",
   "version": "1.0.0",
-  "description": "Node.js script to call Hugging Face API",
+  "description": "Node.js script to call Hugging Face using OpenAI client",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "huggingface",
+    "openai",
     "api",
     "nodejs"
   ],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.7",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "openai": "^4.24.1"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=18.0.0"
   }
 }
