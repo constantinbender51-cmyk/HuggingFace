@@ -32,13 +32,35 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-async function getAICommand(messages) {
-    const response = await aiClient.chat.completions.create({
-        model: "openai/gpt-oss-120b:novita",
-        messages,
-        response_format: { type: "json_object" }
-    });
-    return JSON.parse(response.choices[0].message.content);
+async function getAICommand(prompt) {
+    try {
+        const response = await aiClient.chat.completions.create({
+            model: "openai/gpt-oss-120b:novita",
+            messages: [
+                { role: "system", content: systemPrompt },
+                { role: "user", content: prompt }
+            ],
+            response_format: { type: "json_object" }
+        });
+        
+        const cmd = JSON.parse(response.choices[0].message.content);
+        
+        // Validate the AI response
+        if (!cmd.command) {
+            return {
+                command: "doNothing",
+                parameters: { reason: "AI returned invalid command" }
+            };
+        }
+        return cmd;
+        
+    } catch (error) {
+        console.error("AI Command Error:", error);
+        return {
+            command: "doNothing",
+            parameters: { reason: "AI processing failed" }
+        };
+    }
 }
 
 async function mainLoop() {
