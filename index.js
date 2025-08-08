@@ -1,6 +1,6 @@
 import { OpenAI } from "openai";
 import dotenv from "dotenv";
-import { KrakenFuturesApi } from "./krakenApi.js";
+import KrakenFuturesApi from "./krakenApi.js";
 
 dotenv.config();
 
