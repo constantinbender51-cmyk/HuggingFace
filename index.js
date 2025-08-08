@@ -1,9 +1,19 @@
 import { OpenAI } from "openai";
 import dotenv from "dotenv";
 
+// Suppress specific deprecation warnings
+process.removeAllListeners('warning'); // Remove if you want to keep other warnings
+// OR more targeted approach:
+process.on('warning', (warning) => {
+    if (warning.name === 'DeprecationWarning' && warning.message.includes('punycode')) {
+        // Ignore specifically the punycode deprecation
+        return;
+    }
+    console.warn(warning.name, warning.message);
+});
+
 dotenv.config();
 
-// Initialize the OpenAI client configured for Hugging Face
 const client = new OpenAI({
     baseURL: "https://router.huggingface.co/v1",
     apiKey: process.env.HF_TOKEN,
@@ -28,7 +38,6 @@ async function getChatCompletion() {
     }
 }
 
-// Execute and log the response
 getChatCompletion()
     .then(response => {
         console.log("Response from Hugging Face:");
