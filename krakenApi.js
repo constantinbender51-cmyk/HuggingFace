@@ -1,8 +1,8 @@
-const crypto = require('crypto');
-const axios = require('axios');
-const qs = require('querystring');
+import crypto from 'crypto';
+import axios from 'axios';
+import qs from 'querystring';
 
-class KrakenFuturesApi {
+export class KrakenFuturesApi {
     /**
      * @param {string} apiKey - Your Kraken Futures API key.
      * @param {string} apiSecret - Your Kraken Futures API secret.
@@ -198,7 +198,14 @@ async function main() {
 // At the very end of krakenApi.js
 
 // This makes the class available as a named export.
-module.exports = {
-    KrakenFuturesApi
-};
+export default KrakenFuturesApi;
+
+
+
+
+
+
+
+
+
 
