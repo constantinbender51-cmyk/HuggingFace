@@ -1,7 +1,7 @@
 {
-  "name": "huggingface-openai-client",
+  "name": "kraken-ai-trader",
   "version": "1.0.0",
-  "description": "Node.js script to call Hugging Face using OpenAI client",
+  "description": "AI-powered Kraken Futures trading system",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -9,16 +9,18 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "huggingface",
-    "openai",
-    "api",
-    "nodejs"
+    "kraken",
+    "futures",
+    "trading",
+    "ai"
   ],
   "author": "Your Name",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.6.7",
     "dotenv": "^16.3.1",
-    "openai": "^4.24.1"
+    "openai": "^4.24.1",
+    "querystring": "^0.2.1"
   },
   "engines": {
     "node": ">=18.0.0"
