@@ -38,7 +38,52 @@ async function getAICommand(messages) {
     });
     return JSON.parse(response.choices[0].message.content);
 }
-
+async function mainLoop() {
+    const messages = [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: "BEGIN" } // Initial trigger
+    ];
+    
+    let iteration = 0;
+    const maxIterations = 20;
+    
+    while (iteration < maxIterations) {
+        iteration++;
+        console.log(`\n[Cycle ${iteration}]`);
+        
+        try {
+            // Get command from AI
+            const command = await getAICommand(messages);
+            console.log("> Command:", JSON.stringify(command, null, 2));
+            
+            // Check for termination
+            if (command.command === "doNothing" && 
+                command.parameters.reason.toLowerCase().includes("complete")) {
+                console.log("\nSession complete:", command.parameters.reason);
+                break;
+            }
+            
+            // Execute command
+            const result = await commandExecutor.executeCommand(command);
+            console.log("< Result:", JSON.stringify(result, null, 2));
+            
+            // Update message history
+            messages.push(
+                { role: "assistant", content: JSON.stringify(command) },
+                { role: "user", content: JSON.stringify(result) }
+            );
+            
+            // Optional: Add artificial delay
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+        } catch (error) {
+            console.error("! Error:", error.message);
+            messages.push({
+                role: "user",
+                content: `ERROR: ${error.message}`
+            });
+        }
+    }
 async function main() {
     try {
         console.log("Starting trading session...\n");
