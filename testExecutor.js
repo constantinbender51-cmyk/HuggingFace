@@ -26,7 +26,7 @@ async function runTests() {
     console.log(process.env.KRAKEN_API_KEY);
     console.log(process.env.KRAKEN_API_SECRET);
     const executor = new CommandExecutor(krakenApi);
-    const ticker = executor.getTickers();
+    const ticker = this.executor.getTickers();
     console.log(ticker);
 
     // --- COMMAND DEFINITIONS ---
