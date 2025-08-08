@@ -74,7 +74,9 @@ async function mainLoop() {
             );
             
             // Optional: Add artificial delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            console.log("Waiting for 60 minutes.");
+            await new Promise(resolve => setTimeout(resolve, 60 * 60 * 1000));
+            
             
         } catch (error) {
             console.error("! Error:", error.message);
