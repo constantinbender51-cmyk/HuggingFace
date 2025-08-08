@@ -84,6 +84,7 @@ async function mainLoop() {
             });
         }
     }
+}
 async function main() {
     try {
         console.log("Starting trading session...\n");
