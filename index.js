@@ -14,8 +14,7 @@ try {
     process.exit(1);
 }
 
-// MAIN CODE
-import { CommandExecutor } from "./commandExecutor.js";
+
 
 console.log("Starting application...");
 const executor = new CommandExecutor(new KrakenFuturesApi());
