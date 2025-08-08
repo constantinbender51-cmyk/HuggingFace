@@ -70,7 +70,7 @@ async function mainLoop() {
             );
             
             // Optional: Add artificial delay
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 3 * 60 * 1000));
             
         } catch (error) {
             console.error("! Error:", error.message);
