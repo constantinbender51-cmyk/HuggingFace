@@ -4,6 +4,24 @@ import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
+// TEST IMPORTS FIRST
+try {
+    console.log("Testing imports...");
+    const testImport = await import('./commandExecutor.js');
+    console.log("Import success!", testImport);
+} catch (e) {
+    console.error("IMPORT FAILED!", e);
+    process.exit(1);
+}
+
+// MAIN CODE
+import { CommandExecutor } from "./commandExecutor.js";
+import KrakenFuturesApi from "./krakenApi.js";
+
+console.log("Starting application...");
+const executor = new CommandExecutor(new KrakenFuturesApi());
+const result = await executor.executeCommand({ test: "command" });
+console.log("Final result:", result);
 // commandExecutor.js
 
 console.log("CommandExecutor imported successfully");
