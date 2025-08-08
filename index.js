@@ -12,9 +12,6 @@ console.log("Starting application...");
 const executor = new CommandExecutor(new KrakenFuturesApi());
 const result = await executor.executeCommand({ test: "command" });
 console.log("Final result:", result);
-// commandExecutor.js
-
-console.log("CommandExecutor imported successfully");
 
 dotenv.config();
 
@@ -45,6 +42,7 @@ async function getAICommand(messages) {
 }
 
 async function mainLoop() {
+    console.log(systemPrompt);
     const messages = [
         { role: "system", content: systemPrompt },
         { role: "user", content: "BEGIN" } // Initial trigger
