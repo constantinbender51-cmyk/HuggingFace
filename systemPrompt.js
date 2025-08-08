@@ -44,7 +44,7 @@ Response format example:
     }
 }
 `;
-export systemPrompt {...}
+export default systemPrompt;
 
 
 
