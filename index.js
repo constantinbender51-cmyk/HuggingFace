@@ -5,7 +5,6 @@ import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 // commandExecutor.js
-import KrakenFuturesApi from "./krakenApi.js";
 
 console.log("CommandExecutor imported successfully");
 export class CommandExecutor {
