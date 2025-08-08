@@ -3,7 +3,7 @@ import { OpenAI } from "openai";
 import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
-import { CommandExecutor } from "./commandExecutor.js";
+import CommandExecutor from "./commandExecutor.js";
 import readline from 'readline/promises';
 
 dotenv.config();
