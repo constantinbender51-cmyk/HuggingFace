@@ -1,51 +1,39 @@
-require('dotenv').config();
-const axios = require('axios');
+import { OpenAI } from "openai";
+import dotenv from "dotenv";
 
-// Get the Hugging Face token from environment variables
-const HF_TOKEN = process.env.HF_TOKEN;
+dotenv.config();
 
-if (!HF_TOKEN) {
-    console.error('Error: HF_TOKEN environment variable is not set');
-    process.exit(1);
-}
+// Initialize the OpenAI client configured for Hugging Face
+const client = new OpenAI({
+    baseURL: "https://router.huggingface.co/v1",
+    apiKey: process.env.HF_TOKEN,
+});
 
-// Hugging Face API configuration
-const HF_API_URL = 'https://api-inference.huggingface.co/models';
-const MODEL_NAME = 'gpt2'; // You can change this to any model you want to use
-
-async function queryHuggingFace(prompt) {
+async function getChatCompletion() {
     try {
-        const response = await axios.post(
-            `${HF_API_URL}/${MODEL_NAME}`,
-            { inputs: prompt },
-            {
-                headers: {
-                    'Authorization': `Bearer ${HF_TOKEN}`,
-                    'Content-Type': 'application/json'
-                }
-            }
-        );
+        const chatCompletion = await client.chat.completions.create({
+            model: "openai/gpt-oss-120b:novita",
+            messages: [
+                {
+                    role: "user",
+                    content: "What is the capital of France?",
+                },
+            ],
+        });
 
-        return response.data;
+        return chatCompletion.choices[0].message;
     } catch (error) {
-        console.error('Error calling Hugging Face API:', error.response?.data || error.message);
+        console.error("Error calling Hugging Face API:", error);
         throw error;
     }
 }
 
-// Example usage
-async function main() {
-    try {
-        const prompt = 'The meaning of life is';
-        console.log(`Sending prompt to Hugging Face: "${prompt}"`);
-        
-        const result = await queryHuggingFace(prompt);
-        console.log('Hugging Face API response:');
-        console.log(result);
-    } catch (error) {
-        console.error('Failed to get response from Hugging Face:', error.message);
-    }
-}
-
-// Run the example
-main();
+// Execute and log the response
+getChatCompletion()
+    .then(response => {
+        console.log("Response from Hugging Face:");
+        console.log(response);
+    })
+    .catch(error => {
+        console.error("Failed to get response:", error.message);
+    });
