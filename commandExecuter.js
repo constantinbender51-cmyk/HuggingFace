@@ -69,7 +69,7 @@ export class CommandExecutor {
         }
     }
 } 
-export default commandExecuter;
+export default CommandExecuter;
 
 
 
