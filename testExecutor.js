@@ -21,8 +21,7 @@ async function runTests() {
     // Initialize the real API and Executor
     // Ensure your .env file has the necessary KRAKEN_API_KEY and KRAKEN_API_SECRET
     const krakenApi = new KrakenFuturesApi(
-        process.env.KRAKEN_API_KEY,
-        process.env.KRAKEN_API_SECRET
+        '2J/amVE61y0K0k34qVduE2fSiQTMpppw6Y+K+b+qt9zk7o+UvtBQTwBq', '6CEQlIa0+YrlxBXWAfdvkpcCpVK3UT5Yidpg/o/36f60WWETLU1bU1jJwHK14LqFJq1T3FRj1Pdj/kk8zuhRiUJi'
     );
     console.log(process.env.KRAKEN_API_KEY);
     console.log(process.env.KRAKEN_API_SECRET);
