@@ -89,6 +89,9 @@ async function mainLoop() {
 }
 async function main() {
     try {
+        console.log("testing functions");
+        console.log(process.env.KRAKEN_API_KEY+"/n"+process.env.KRAKEN_API_SECRET);
+        
         console.log("Starting trading session...\n");
         await mainLoop();
     } catch (error) {
@@ -99,3 +102,13 @@ async function main() {
 }
 
 main();
+
+
+
+
+
+
+
+
+
+
