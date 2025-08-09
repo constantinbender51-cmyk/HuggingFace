@@ -31,7 +31,7 @@ export function clearTerminal(messages) {
  * @returns {void}
  */
 
-export function writeToActionPlan(parameters) {
+export function writeActionPlan(parameters) {
   
   // Update the actionPlan in the shared state object
   sharedState.actionPlan = parameters.actionPlan;
