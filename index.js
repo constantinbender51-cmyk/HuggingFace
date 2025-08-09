@@ -85,7 +85,7 @@ async function mainLoop() {
                 { role: "user", content: JSON.stringify(result) }
             );
             console.log(' wait 60 minutes ');
-            await new Promise(resolve => setTimeout(resolve, 60 * 60 * 1000));
+            await new Promise(resolve => setTimeout(resolve, 30 * 1000));
             
             
         } catch (error) {
@@ -97,22 +97,8 @@ async function mainLoop() {
         }
     }
 }
-//Bot functions
-
-
-
-
 async function main() {
-    try {
-        console.log("Starting trading session...\n");
-        const result = writeToActionPlan('do something [ ]\notify operator [ ]');
-
-// 3. Print the result
-        console.log(`Function returned: ${result}`); // Output: Function returned: success
-
-// 4. Verify the original variable has been updated
-        console.log('Current actionPlan variable:', actionPlan);
-        
+    try {        
         await mainLoop();
     } catch (error) {
         console.error("Fatal error:", error);
