@@ -61,7 +61,7 @@ export class CommandExecutor {
                     return { result: "Deepseek API called", parameters: command.parameters };
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
-                case 'writeActionPlan':
+                case 'writeToActionPlan':
                     return writeToActionPlan(command.parameters);
                 case 'doNothing':
                     return { status: "No action taken", reason: command.parameters.reason };
