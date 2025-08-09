@@ -16,7 +16,6 @@ const MOCK_DATA = {
     timeout: 60, // in seconds
     // Example: 14 days ago from now
     sinceTimestamp: Math.floor((Date.now() - 14 * 24 * 60 * 60 * 1000) / 1000)
-
 };
 
 // --- TEST SETUP ---
