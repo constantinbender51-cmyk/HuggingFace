@@ -41,7 +41,6 @@ async function getAICommand(messages) {
     process.env.KRAKEN_API_KEY,
     process.env.KRAKEN_API_SECRET
 );
-const commandExecutor = new CommandExecutor(krakenApi);
 const aiClient = new OpenAI({
     baseURL: "https://router.huggingface.co/v1",
     apiKey: process.env.HF_TOKEN,
