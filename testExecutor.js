@@ -23,10 +23,10 @@ const MOCK_DATA = {
  * @returns {Promise<void>}
  */
 async function getAccountAvailableMargin() {
-    // Implementation to get available margin would go here.
+    console.log("Function called: getAccountAvailableMargin");
 }
 
-// --- Empty Functions for General Commands ---
+// --- Empty Functions for General Commands with Console Output ---
 
 /**
  * Calls an external AI API (e.g., Deepseek) with a given prompt.
@@ -35,7 +35,7 @@ async function getAccountAvailableMargin() {
  * @returns {Promise<void>}
  */
 async function callDeepseekAPI(parameters) {
-  // Implementation to call the Deepseek API would go here.
+  console.log(`Function called: callDeepseekAPI with parameters: ${JSON.stringify(parameters)}`);
 }
 
 /**
@@ -45,7 +45,7 @@ async function callDeepseekAPI(parameters) {
  * @returns {Promise<void>}
  */
 async function doNothing(parameters) {
-  // This function intentionally does nothing.
+  console.log(`Function called: doNothing with reason: "${parameters.reason}"`);
 }
 
 /**
@@ -53,7 +53,9 @@ async function doNothing(parameters) {
  * @returns {void}
  */
 function clearTerminal() {
-  // Implementation to clear the console would go here (e.g., console.clear()).
+  console.log("Function called: clearTerminal");
+  // In a real Node.js environment, you would use:
+  // console.clear();
 }
 
 /**
@@ -62,15 +64,8 @@ function clearTerminal() {
  * @param {string} parameters.updatedActionPlan - The new content for the action plan.
  * @returns {void}
  */
-function writeToActionPlan(updatedActionPlan) {
-  // Update the global actionPlan variable with the provided data.
-  actionPlan = updatedActionPlan;
-
-  // You could add more logic here, like saving to a file or database.
-  // For now, we just log it to the console.
-  console.log('Action plan updated:', actionPlan);
-
-  return 'success';
+function writeToActionPlan(parameters) {
+  console.log(`Function called: writeToActionPlan with plan: "${parameters.updatedActionPlan}"`);
 }
 
 /**
@@ -80,7 +75,7 @@ function writeToActionPlan(updatedActionPlan) {
  * @returns {Promise<void>}
  */
 async function wait(parameters) {
-  // Implementation for the wait/delay functionality would go here.
+  console.log(`Function called: wait for ${parameters.minutes} minutes.`);
 }
 
 /**
@@ -90,7 +85,7 @@ async function wait(parameters) {
  * @returns {void}
  */
 function notifyOperator(parameters) {
-  // Implementation to send a notification would go here.
+  console.log(`Function called: notifyOperator with message: "${parameters.message}"`);
 }
 
 
