@@ -56,9 +56,9 @@ export class CommandExecutor {
                     return await this.krakenApi.batchOrder(command.parameters);
                     
                 // Special actions
-                case 'callDeepseekAPI':
-                    // Implement your Deepseek API call here
-                    return { result: "Deepseek API called", parameters: command.parameters };
+                case 'callHuggingfaceAPI':
+                    // Implement your Huggingface API call here
+                    return { result: "Huggingface API called", parameters: command.parameters };
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeToActionPlan':
@@ -80,12 +80,4 @@ export class CommandExecutor {
             throw error;
         }
     }
-} 
-
-
-
-
-
-
-
-
+}
