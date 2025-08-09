@@ -36,7 +36,7 @@ const rl = readline.createInterface({
 });
 
 let actionPlan = {};
-
+const INTERVAL = 60; //trading_bot_loop_interval in seconds
 async function getAICommand(messages) {
     const response new KrakenFuturesApi(
     process.env.KRAKEN_API_KEY,
@@ -94,10 +94,7 @@ async function mainLoop() {
                 { role: "autonomous_trading_agent", content: JSON.stringify(command) },
                 { role: "user", content: ">" + JSON.stringify(result) }
             );
-            console.log(' wait 60 minutes ');
-            await new Promise(resolve => setTimeout(resolve, 30 * 1000));
-            
-            
+            await new Promise(resolve => setTimeout(resolve, INTERVAL * 1000));
         } catch (error) {
             console.error("! Error:", error.message);
             messages.push({
