@@ -40,7 +40,7 @@ async function mainLoop() {
 
     const testCommand = {
         command: "fetchKrakenData",
-        parameters: { "pair": "XBT/USD",
+        parameters: { "pair": "XBTUSD",
                       "interval": "1440",
                       "since": ""
                     }
