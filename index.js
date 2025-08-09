@@ -38,6 +38,27 @@ async function getAICommand(messages) {
     });
     return JSON.parse(response.choices[0].message.content);
 }
+// Define a variable to hold the action plan.
+let actionPlan = {};
+
+/**
+ * Updates the actionPlan variable with a new value.
+ *
+ * @param {object} updatedActionPlan - The new action plan object.
+ * @returns {string} Returns 'success' after updating the variable.
+ */
+function writeToActionPlan(updatedActionPlan) {
+  // Update the global actionPlan variable with the provided data.
+  actionPlan = updatedActionPlan;
+
+  // You could add more logic here, like saving to a file or database.
+  // For now, we just log it to the console.
+  console.log('Action plan updated:', actionPlan);
+
+  return 'success';
+}
+
+// 2. Call the function to update the action plan
 
 async function mainLoop() {
     const messages = [
@@ -70,12 +91,8 @@ async function mainLoop() {
             
             // Update message history
             messages.push(
-                { role: "assistant", content: JSON.stringify(command) },
-                { role: "user", content: JSON.stringify(result) }
-            );
-            
-            // Optional: Add artificial delay
-            console.log("Waiting for 60 minutes.");
+                { rol: "assistant", content: JSON.stringify(command) },
+                    console.log("Waiting for 60 minutes.");
             await new Promise(resolve => setTimeout(resolve, 60 * 60 * 1000));
             
             
@@ -96,6 +113,14 @@ async function mainLoop() {
 async function main() {
     try {
         console.log("Starting trading session...\n");
+        const result = writeToActionPlan('do something [ ]\notify operator [ ]');
+
+// 3. Print the result
+        console.log(`Function returned: ${result}`); // Output: Function returned: success
+
+// 4. Verify the original variable has been updated
+        console.log('Current actionPlan variable:', actionPlan);
+        
         await mainLoop();
     } catch (error) {
         console.error("Fatal error:", error);
