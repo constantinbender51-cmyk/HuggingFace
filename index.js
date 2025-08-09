@@ -38,46 +38,7 @@ async function getAICommand(messages) {
     });
     return JSON.parse(response.choices[0].message.content);
 }
-//handler functions 
-async function fetchKrakenData(pair = 'XBTUSD', interval = 60, since = null) {
-  try {
-    // If 'since' is not provided, default to fetching data for the last 4 days.
-    const sinceParam = since || Math.floor((Date.now() - (4 * 24 * 60 * 60 * 1000)) / 1000);
 
-    const response = await fetch(
-      `https://api.kraken.com/0/public/OHLC?pair=${pair}&interval=${interval}&since=${sinceParam}`
-    );
-    const data = await response.json();
-
-    if (data.error && data.error.length > 0) {
-      console.error('Kraken API error:', data.error);
-      return null;
-    }
-
-    // The pair name in the response might be different from the one sent (e.g., XXBTZUSD for XBTUSD).
-    const resultKey = Object.keys(data.result)[0];
-    const ohlcData = data.result[resultKey];
-
-    // Format the data into a more readable array of objects.
-    return ohlcData.map(item => {
-      const [time, open, high, low, close, vwap, volume, count] = item.map(Number);
-      return {
-        date: new Date(time * 1000).toISOString(),
-        timestamp: time,
-        open,
-        high,
-        low,
-        close,
-        vwap,
-        volume,
-        count
-      };
-    });
-  } catch (error) {
-    console.error('Error fetching Kraken OHLC data:', error);
-    return null;
-  }
-}
 async function mainLoop() {
     const messages = [
         { role: "system", content: systemPrompt },
