@@ -12,7 +12,7 @@ console.log("Starting application...");
 dotenv.config();
 
 let messages = [
-        { role: "system", content: systemPrompt },
+        { role: "autonomous_trading_agent", content: systemPrompt },
         { role: "user", content: ">" } // Initial trigger
     ];
 
