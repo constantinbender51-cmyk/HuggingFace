@@ -19,6 +19,6 @@ export async function callHuggingfaceAPI(messages) {
         messages,
         response_format: { type: "json_object" }
     });
-    console.log('in the function ' + ${ JSON.parse(response.choices[0].message.content) });
+    console.log("in the function " + ${ JSON.parse(response.choices[0].message.content) });
     return JSON.parse(response.choices[0].message.content);
 }
