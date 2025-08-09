@@ -37,7 +37,7 @@ Available commands:
         *   Jot down calculations (e.g., "Target entry price: $51,200, stop-loss: $50,800").
         *   Remember a specific detail for the next step (e.g., "Order ID to monitor is 123-ABC").
     *   notes: The string content to write.
-    *   append: Set to `true` to add to existing notes, `false` (default) to overwrite.
+    *   append: Set to true to add to existing notes, false (default) to overwrite.
 
 Response format example:
 {
