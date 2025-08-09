@@ -39,7 +39,7 @@ Available commands:
 
 10. **wait({minutes})**: Pause execution for a specified number of minutes.
 
-11. **writeToActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
+11. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
     *   **Example 1: Research & Analysis Workflow**
         - Get historic BTC price data [ ]
         - Ask Huggingface to perform a technical analysis [ ]
