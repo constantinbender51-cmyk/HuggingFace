@@ -18,7 +18,7 @@ const MOCK_DATA = {
     sinceTimestamp: Math.floor((Date.now() - 14 * 24 * 60 * 60 * 1000) / 1000)
 };
 //DEFINE FUNCTIONS 
-**
+/**
  * Gets the available margin for the account.
  * @returns {Promise<void>}
  */
