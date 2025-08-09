@@ -15,7 +15,7 @@ const MOCK_DATA = {
     orderId: 'some-fake-order-id', // Use a real ID for tests that might succeed
     timeout: 60 // in seconds
     // Example: 14 days ago from now
-    const sinceTimestamp = Math.floor((Date.now() - 14 * 24 * 60 * 60 * 1000) / 1000) 
+    const sinceTimestamp = Math.floor((Date.now() - 14 * 24 * 60 * 60 * 1000) / 1000);
 
 };
 
