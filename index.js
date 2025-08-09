@@ -29,7 +29,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-const INTERVAL = 60; // trading_bot_loop_interval in seconds
+const INTERVAL = 5 * 60; // trading_bot_loop_interval in seconds
 
 async function mainLoop() {
     //TEST SECTION BEGIN
@@ -70,7 +70,7 @@ async function mainLoop() {
 
             // Update message history
             messages.push(
-                { role: "autonomous_trading_agent", content: JSON.stringify(command) },
+                { role: "assistant", content: JSON.stringify(command) },
                 { role: "user", content: ">" + JSON.stringify(result) }
             );
             await new Promise(resolve => setTimeout(resolve, INTERVAL * 1000));
