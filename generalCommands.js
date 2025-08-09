@@ -1,5 +1,5 @@
 import systemPrompt from './systemPrompt.js';
-const sharedState = require('./state.js');
+import sharedState from './state.js';
 /**
  * Clears the terminal or console screen.
  * @returns {void}
