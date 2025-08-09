@@ -50,13 +50,28 @@ async function getAICommand(messages) {
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-        console.log(`Initial action plan: "${sharedState.actionPlan}"`);
+    console.log("--- Before calling writeAct...---");
+    console.log(`Act...: ${actionPlan}`);
+    console.log("-------------------------------------\n");
 
-// 2. Call the function from the other file to update the variable
-        writeToActionPlan("This is the new action plan set from generalCommands.js.");
+    const testCommand = {
+        command: "writeToActionPlan",
+        parameters: { "a. eat shit/nb. eat worms" } 
+    };
 
-// 3. Log the state again to see the change
-        console.log(`Final action plan: "${sharedState.actionPlan}"`);
+    try {
+        // 2. Execute the command. This will now modify the 'messages' array directly.
+        // There is no need to capture the result because it's a direct mutation.
+        await commandExecutor.executeCommand(testCommand);
+
+    } catch (error) {
+        console.error("An error occurred during command execution:", error);
+    }
+
+    console.log("\n--- After calling acti... ---");
+    // 3. The 'messages' variable in this scope has now been changed directly.
+    console.log(`Act...: ${actionPlan}`); 
+    console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
     const maxIterations = 8;
