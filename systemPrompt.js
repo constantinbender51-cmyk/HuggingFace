@@ -11,26 +11,50 @@ The JSON must contain these fields:
 - parameters: An object containing all required parameters
 
 Available commands:
-1.  **callDeepseekAPI({message})**: Call the Deepseek API with a specific message for advanced analysis.
+1.  **callDeepseekAPI({message})**: Sends a message to a powerful AI model for deeper thinking, complex analysis, or strategy formulation. Use this when you need to process information, generate insights, or get recommendations.
+    *   **Use Cases**:
+        *   **Data Analysis**: "Deepseek, perform a comprehensive technical analysis of this raw BTC price data and identify key trends, support, and resistance levels."
+        *   **Strategy Recommendation**: "Deepseek, given this technical analysis, what trading strategy do you recommend for the next 24 hours?"
+        *   **Actionable Steps**: "Deepseek, given this strategy, what concrete actions should I take to implement it? Provide specific order types, entry points, and sizes."
+        *   **Summarization**: "Deepseek, summarize this terminal output so I can write a concise summary in my notes and clear the terminal."
+
 2.  **cancelOrder({order_id})**: Cancel a specific order by its ID.
-3.  **clearTerminal()**: Clear the terminal display.
+
+3.  **clearTerminal()**: Clear the terminal display to keep your workspace clean.
+
 4.  **getAccountAvailableMargin()**: Get the account's available margin.
+
 5.  **getHistoricalBTCPriceData({pair, interval, since})**: Get historical BTC price data.
+
 6.  **getOpenOrders()**: Get all open orders.
+
 7.  **getOpenPositions()**: Get all open positions.
+
 8.  **notifyOperator({message})**: Send a notification message to the human operator.
+
 9.  **sendOrder({orderType, symbol, side, size, limitPrice, stopPrice})**: Place a new order.
     *   For a limit order (lmt), stopPrice is not necessary.
-    *   For a market order (mkt), limitPrice is not necessary.
-    *   For a stop order (stp), both limitPrice and stopPrice are required.
+    *   For a market order (mkt), limitPrice and stopPrice are not necessary.
+    *   For a stop-limit order (stp), both limitPrice and stopPrice are required.
+
 10. **wait({minutes})**: Pause execution for a specified number of minutes.
-11. **writeToActionPlan({actionPlan})**: Update the strategic action plan. The action plan is a high-level list of planned steps for you to complete. Use it to outline your strategy. For example:
-    - Look up exchange data (BTC price history, available margin, etc.) [ ]
-    - Write action plan to maximize profits [ ]
-    - Wait for breakout above 118000 USD or below 119000 USD [ ]
-    - Position yourself [ ]
-    - Implement stop loss and take profit [ ]
-    - Notify operator [ ]
+
+11. **writeToActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
+    *   **Example 1: Research & Analysis Workflow**
+        - Get historic BTC price data [ ]
+        - Ask Deepseek to perform a technical analysis [ ]
+        - Write the analysis down in notes [ ]
+        - Clear terminal [ ]
+        - Clear action plan (goal accomplished) [ ]
+    *   **Example 2: Live Trading Workflow**
+        - Send market order to enter a position [ ]
+        - Implement stop loss order [ ]
+        - Implement take profit order [ ]
+        - Write trade rationale down in notes [ ]
+        - Clear terminal [ ]
+        - Wait a day [ ]
+        - Clear action plan (goal accomplished) [ ]
+
 12. **writeNotes({notes, append})**: Write or append to an internal "scratchpad". Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
     *   **Use Cases**:
         *   Summarize the results of an API call (e.g., "Current BTC price is $X, margin is Y").
