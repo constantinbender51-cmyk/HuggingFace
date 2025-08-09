@@ -3,4 +3,4 @@ let sharedState = {
   actionPlan: ""
 };
 
-module.exports = sharedState;
+export default sharedState;
