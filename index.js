@@ -5,6 +5,13 @@ import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 import { CommandExecutor} from "./commandExecutor.js";
+import { 
+    doNothing, 
+    clearTerminal, 
+    writeToActionPlan, 
+    wait, 
+    notifyOperator 
+} from './generalCommands.js';
 
 
 
@@ -41,24 +48,6 @@ async function getAICommand(messages) {
     return JSON.parse(response.choices[0].message.content);
 }
 // Define a variable to hold the action plan.
-let actionPlan = {};
-
-/**
- * Updates the actionPlan variable with a new value.
- *
- * @param {object} updatedActionPlan - The new action plan object.
- * @returns {string} Returns 'success' after updating the variable.
- */
-function writeToActionPlan(updatedActionPlan) {
-  // Update the global actionPlan variable with the provided data.
-  actionPlan = updatedActionPlan;
-
-  // You could add more logic here, like saving to a file or database.
-  // For now, we just log it to the console.
-  console.log('Action plan updated:', actionPlan);
-
-  return 'success';
-}
 
 // 2. Call the function to update the action plan
 
