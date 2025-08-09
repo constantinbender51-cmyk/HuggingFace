@@ -1,5 +1,5 @@
 // At the top of commandExecutor.js, alongside other imports
-import { clearTerminal, writeToActionPlan } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
+import { clearTerminal, writeToActionPlan, notifyOperator } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
 // commandExecutor.js
 export class CommandExecutor {
     constructor(krakenApi, messages) {
@@ -63,6 +63,9 @@ export class CommandExecutor {
                     return clearTerminal(this.messages);
                 case 'writeToActionPlan':
                     return writeToActionPlan(command.parameters);
+                case 'notifyOperator':
+                    return await notifyOperator(command.parameters);
+                    
                 case 'doNothing':
                     return { status: "No action taken", reason: command.parameters.reason };
                     
