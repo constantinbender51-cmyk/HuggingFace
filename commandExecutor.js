@@ -2,8 +2,10 @@
 import { clearTerminal } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
 // commandExecutor.js
 export class CommandExecutor {
-    constructor(krakenApi) {
+    constructor(krakenApi, messages) {
         this.krakenApi = krakenApi;
+        this.messages = messages;
+        
     }
 
     async executeCommand(command) {
