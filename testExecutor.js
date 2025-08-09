@@ -14,6 +14,9 @@ const MOCK_DATA = {
     symbol: 'pi_xbtusd', // A common symbol for testing
     orderId: 'some-fake-order-id', // Use a real ID for tests that might succeed
     timeout: 60 // in seconds
+    // Example: 14 days ago from now
+    sinceTimestamp: Math.floor((Date.now() - 14 * 24 * 60 * 60 * 1000) / 1000) 
+
 };
 
 // --- TEST SETUP ---
@@ -79,6 +82,113 @@ async function runTests() {
         { command: 'getAccountLog', parameters: {} },
         { command: 'getTransfers', parameters: {} },
         { command: 'batchOrder', parameters: { /* batchJson would go here */ } }
+        
+        {
+        command: 'fetchKrakenData', 
+        parameters: { 
+            pair: MOCK_DATA.pair, 
+            interval: 60, // Hourly
+            since: MOCK_DATA.sinceTimestamp 
+        } 
+    },
+
+    // 2. Get account available margin
+    { 
+        command: 'getAccountAvailableMargin', 
+        parameters: {} 
+    },
+
+    // 3. Get open positions
+    { 
+        command: 'getOpenPositions', 
+        parameters: {} 
+    },
+
+    // 4. Get open orders
+    { 
+        command: 'getOpenOrders', 
+        parameters: {} 
+    },
+
+    // 5. Send order (example for each type)
+    { 
+        command: 'sendOrder', 
+        parameters: { 
+            orderType: 'lmt', 
+            symbol: MOCK_DATA.symbol, 
+            side: 'buy', 
+            size: 1, 
+            limitPrice: 100000 
+        } 
+    },
+    { 
+        command: 'sendOrder', 
+        parameters: { 
+            orderType: 'mkt', 
+            symbol: MOCK_DATA.symbol, 
+            side: 'sell', 
+            size: 1 
+        } 
+    },
+    { 
+        command: 'sendOrder', 
+        parameters: { 
+            orderType: 'stp', 
+            symbol: MOCK_DATA.symbol, 
+            side: 'buy', 
+            size: 1, 
+            limitPrice: 110000, 
+            stopPrice: 109500 
+        } 
+    },
+
+    // 6. Cancel order
+    { 
+        command: 'cancelOrder', 
+        parameters: { 
+            order_id: MOCK_DATA.orderId 
+        } 
+    },
+
+    // 7. Call Deepseek API
+    { 
+        command: 'callDeepseekAPI', 
+        parameters: { 
+            message: "Analyze the current market sentiment for Bitcoin." 
+        } 
+    },
+
+    // 8. Clear terminal
+    { 
+        command: 'clearTerminal', 
+        parameters: {} 
+    },
+
+    // 9. Write to action plan
+    { 
+        command: 'writeToActionPlan', 
+        parameters: { 
+            updatedActionPlan: "- Look up exchange data [x]\n- Analyze market trends [ ]\n- Place buy order [ ]" 
+        } 
+    },
+
+    // 10. Wait
+    { 
+        command: 'wait', 
+        parameters: { 
+            minutes: 5 
+        } 
+    },
+
+    // 11. Notify operator
+    { 
+        command: 'notifyOperator', 
+        parameters: { 
+            message: "Trade execution successful. Position opened for BTC/USD." 
+        } 
+    }
+];
+    
     ];
 
     // --- EXECUTION LOOP ---
