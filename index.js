@@ -50,39 +50,6 @@ async function getAICommand(messages) {
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-    messages.length=0;
-    messages.push(
-        { role: "system", content: systemPrompt },
-        { role: "user", content: "> Some previous user input" },
-        { role: "assistant", content: '{ "command": "getOpenPositions", "parameters": {} }' },
-        { role: "user", content: "> Some other action" }
-    );
-    console.log("--- Before calling clearTerminal ---");
-    console.log(`Message count: ${messages.length}`);
-    console.log(JSON.stringify(messages, null, 2));
-    console.log("-------------------------------------\n");
-
-    // 3. Define the command to be executed.
-    // The 'clearTerminal' command has no parameters.
-    const clearTerminalCommand = {
-        command: "clearTerminal",
-        parameters: {} 
-    };
-
-    try {
-        // 4. Execute the command.
-        const result = await commandExecutor.executeCommand(clearTerminalCommand);
-        console.log("Execution result:", result); // Should show { status: 'Terminal cleared' } or similar
-
-    } catch (error) {
-        console.error("An error occurred during command execution:", error);
-    }
-
-    console.log("\n--- After calling clearTerminal ---");
-    console.log(`Message count: ${messages.length}`);
-    // The 'clearTerminal' function in generalCommands.js should have modified the array.
-    console.log(JSON.stringify(messages, null, 2)); 
-    console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
     const maxIterations = 8;
