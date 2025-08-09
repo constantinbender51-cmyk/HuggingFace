@@ -33,7 +33,7 @@ const INTERVAL = 5 * 60; // trading_bot_loop_interval in seconds
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-   let testData = null;
+    let testData = '';
     console.log("--- Before calling ---");
     console.log(`testData: ${testData}`);
     console.log("-------------------------------------\n");
