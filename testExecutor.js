@@ -187,8 +187,6 @@ async function runTests() {
         } 
     }
 ];
-    
-    ];
 
     // --- EXECUTION LOOP ---
     for (const cmd of commandsToTest) {
