@@ -1,3 +1,5 @@
+// At the top of commandExecutor.js, alongside other imports
+import { clearTerminal } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
 // commandExecutor.js
 export class CommandExecutor {
     constructor(krakenApi) {
