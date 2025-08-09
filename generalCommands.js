@@ -1,4 +1,5 @@
 import systemPrompt from './systemPrompt.js';
+const sharedState = require('./state.js');
 /**
  * Clears the terminal or console screen.
  * @returns {void}
@@ -14,7 +15,7 @@ export function clearTerminal(messages) {
     { role: "system", content: systemPrompt },
     { role: "user", content: ">" }
   );
-  return messages;
+  return 'Terminal cleared';
 }
 
 /**
@@ -26,6 +27,9 @@ export function clearTerminal(messages) {
 export function writeToActionPlan(parameters) {
   console.log(`Function called: writeToActionPlan with plan: "${parameters.updatedActionPlan}"`);
   // In a real implementation, you would update a global variable or write to a file.
+  sharedState.actionPlan = parameters;
+  console.log(`Action plan updated to: "${sharedState.actionPlan}"`);
+  return 'Action plan updated';
 }
 
 /**
