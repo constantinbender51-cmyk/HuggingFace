@@ -1,6 +1,4 @@
 // commandExecutor.js
-
-console.log("CommandExecutor imported successfully");
 export class CommandExecutor {
     constructor(krakenApi) {
         this.krakenApi = krakenApi;
