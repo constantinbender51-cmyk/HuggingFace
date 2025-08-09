@@ -30,6 +30,8 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
+let actionPlan = {};
+
 async function getAICommand(messages) {
     const response = await aiClient.chat.completions.create({
         model: "openai/gpt-oss-120b:novita",
