@@ -37,23 +37,6 @@ let actionPlan = {};
 const INTERVAL = 60; //trading_bot_loop_interval in seconds
 
 async function getAICommand(messages) {
-    const response = new KrakenFuturesApi(
-    process.env.KRAKEN_API_KEY,
-    process.env.KRAKEN_API_SECRET
-);
-const aiClient = new OpenAI({
-    baseURL: "https://router.huggingface.co/v1",
-    apiKey: process.env.HF_TOKEN,
-});
-
-// Create terminal interface
-const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-let actionPlan = {};
-async function getAICommand(messages) {
     const response = await aiClient.chat.completions.create({
         model: "openai/gpt-oss-120b:novita",
         messages,
