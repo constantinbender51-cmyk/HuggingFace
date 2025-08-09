@@ -35,7 +35,7 @@ async function mainLoop() {
     //TEST SECTION BEGIN
    let testData = null;
     console.log("--- Before calling fetchKrakenData---");
-    console.log(`testData: ${trstData}`);
+    console.log(`testData: ${testData}`);
     console.log("-------------------------------------\n");
 
     const testCommand = {
