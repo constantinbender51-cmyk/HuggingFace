@@ -11,7 +11,7 @@ console.log("Starting Command Executor test script...");
 // --- MOCK DATA ---
 // Use realistic data for testing. You might need to adjust these.
 const MOCK_DATA = {
-    symbol: 'pi_xbtusd', // A common symbol for testing
+    symbol: 'pf_xbtusd', // A common symbol for testing
     orderId: 'some-fake-order-id', // Use a real ID for tests that might succeed
     timeout: 60 // in seconds
     // Example: 14 days ago from now
