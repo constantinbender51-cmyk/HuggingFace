@@ -105,10 +105,40 @@ export async function notifyOperator(parameters) {
   }
 }
 
-// --- Example Usage ---
-// To use this function, you would call it like this:
-/*
-  notifyOperator({ message: "The user needs assistance with a critical issue." });
-*/
+/**
+ * Writes or appends notes to a shared state for internal context.
+ * This allows the AI to keep track of observations or temporary information.
+ *
+ * @param {object} parameters - The parameters for the command.
+ * @param {string} parameters.notes - The content to be written to the notes.
+ * @param {boolean} [parameters.append=false] - If true, appends the new notes to existing notes. If false (default), overwrites them.
+ * @returns {object} A status object confirming the action.
+ */
+export function writeNotes(parameters) {
+  const { notes, append = false } = parameters;
+
+  if (typeof notes !== 'string') {
+    const errorMessage = "writeNotes Error: 'notes' parameter must be a string.";
+    console.error(errorMessage);
+    return { status: "Error", error: errorMessage };
+  }
+
+  if (append) {
+    // Append with a newline for better readability
+    sharedState.notes = sharedState.notes ? `${sharedState.notes}\n${notes}` : notes;
+    console.log(`Notes Appended. New Notes: "${sharedState.notes}"`);
+  } else {
+    // Overwrite existing notes
+    sharedState.notes = notes;
+    console.log(`Notes Overwritten. New Notes: "${sharedState.notes}"`);
+  }
+
+  return {
+    status: "Success",
+    message: `Notes have been successfully ${append ? 'appended' : 'updated'}.`,
+    currentNotes: sharedState.notes
+  };
+}
+
 
 
