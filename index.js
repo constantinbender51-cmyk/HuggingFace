@@ -6,7 +6,6 @@ import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 import { CommandExecutor} from "./commandExecutor.js";
 import { 
-    doNothing, 
     clearTerminal, 
     writeToActionPlan, 
     wait, 
