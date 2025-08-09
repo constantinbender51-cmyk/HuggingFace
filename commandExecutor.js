@@ -1,6 +1,5 @@
 // At the top of commandExecutor.js, alongside other imports
 import { clearTerminal, writeActionPlan, notifyOperator, writeNotes, clearActionPlan } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
-import { fetchKrakenData } from './krakenApi.js';
 // commandExecutor.js
 export class CommandExecutor {
     constructor(krakenApi, messages) {
@@ -24,7 +23,7 @@ export class CommandExecutor {
                 case 'getHistory':
                     return await this.krakenApi.getHistory(command.parameters);
                 case 'fetchKrakenData': // <-- Add the new case here
-                    return await fetchKrakenData(command.parameters);
+                    return await this.krakenApi.fetchKrakenData(command.parameters);
                     
                     
                 // Private endpoints
