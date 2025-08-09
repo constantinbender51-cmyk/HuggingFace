@@ -2,10 +2,17 @@
  * Clears the terminal or console screen.
  * @returns {void}
  */
-export function clearTerminal() {
-  console.log("Function called: clearTerminal");
-  // In a real Node.js environment, you might use:
-  // console.clear();
+export function clearTerminal(messages) {
+  console.log("Executing clearTerminal: Resetting message history.");
+
+  // 1. Clear the existing array. .length = 0 is the most efficient way.
+  messages.length = 0;
+
+  // 2. Push the initial state back into the array.
+  messages.push(
+    { role: "system", content: systemPrompt },
+    { role: "user", content: ">" }
+  );
 }
 
 /**
