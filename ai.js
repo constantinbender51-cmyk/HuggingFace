@@ -1,10 +1,8 @@
 // ai.js
 import { OpenAI } from "openai";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 // Initialize the AI client
+// The API key is read from process.env, which should be populated by dotenv in main.js
 const aiClient = new OpenAI({
     baseURL: "https://router.huggingface.co/v1",
     apiKey: process.env.HF_TOKEN,
