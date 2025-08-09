@@ -37,7 +37,7 @@ let actionPlan = {};
 const INTERVAL = 60; //trading_bot_loop_interval in seconds
 
 async function getAICommand(messages) {
-    const response new KrakenFuturesApi(
+    const response = new KrakenFuturesApi(
     process.env.KRAKEN_API_KEY,
     process.env.KRAKEN_API_SECRET
 );
