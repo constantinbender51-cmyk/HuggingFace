@@ -84,7 +84,7 @@ async function mainLoop() {
                 { role: "assistant", content: JSON.stringify(command) },
                 { role: "user", content: JSON.stringify(result) }
             );
-            console.log(' wait 60 minutes ';
+            console.log(' wait 60 minutes ');
             await new Promise(resolve => setTimeout(resolve, 60 * 60 * 1000));
             
             
