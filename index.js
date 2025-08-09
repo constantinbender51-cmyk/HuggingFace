@@ -50,12 +50,13 @@ async function getAICommand(messages) {
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-    messages = [
+    messages.length=0;
+    messages.push(
         { role: "system", content: systemPrompt },
         { role: "user", content: "> Some previous user input" },
         { role: "assistant", content: '{ "command": "getOpenPositions", "parameters": {} }' },
         { role: "user", content: "> Some other action" }
-    ];
+    );
     console.log("--- Before calling clearTerminal ---");
     console.log(`Message count: ${messages.length}`);
     console.log(JSON.stringify(messages, null, 2));
