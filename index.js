@@ -81,8 +81,10 @@ async function mainLoop() {
             
             // Update message history
             messages.push(
-                { rol: "assistant", content: JSON.stringify(command) },
-                    console.log("Waiting for 60 minutes.");
+                { role: "assistant", content: JSON.stringify(command) },
+                { role: "user", content: JSON.stringify(result) }
+            );
+            console.log(' wait 60 minutes ';
             await new Promise(resolve => setTimeout(resolve, 60 * 60 * 1000));
             
             
