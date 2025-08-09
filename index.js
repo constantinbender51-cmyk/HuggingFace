@@ -51,13 +51,13 @@ async function getAICommand(messages) {
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-    console.log("--- Before calling writeAct...---");
-    console.log(`Act...: ${sharedState.actionPlan}`);
+    console.log("--- Before calling notifyOperator---");
+    console.log(`Act...: ${sharedState.message}`);
     console.log("-------------------------------------\n");
 
     const testCommand = {
-        command: "writeToActionPlan",
-        parameters: { "actionPlan": "a. eat shit/nb. eat worms" } 
+        command: "notifyOperator",
+        parameters: { "message": "Completed trade" } 
     };
 
     try {
@@ -69,9 +69,9 @@ async function mainLoop() {
         console.error("An error occurred during command execution:", error);
     }
 
-    console.log("\n--- After calling acti... ---");
+    console.log("\n--- After calling notifyOperator ---");
     // 3. The 'messages' variable in this scope has now been changed directly.
-    console.log(`Act...: ${sharedState.actionPlan}`); 
+    console.log(`message: ${sharedState.message}`); 
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
