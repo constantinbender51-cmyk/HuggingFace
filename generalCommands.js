@@ -139,6 +139,21 @@ export function writeNotes(parameters) {
     currentNotes: sharedState.notes
   };
 }
+/**
+ * Clears the action plan in the shared state.
+ * @returns {object} A status object confirming the action.
+ */
+export function clearActionPlan() {
+  console.log("Executing clearActionPlan: Resetting the action plan.");
+
+  // Set the actionPlan in the shared state object to an empty string or null
+  sharedState.actionPlan = ''; // or null, depending on your preference for a cleared state
+
+  return {
+    status: "Success",
+    message: "Action plan has been cleared."
+  };
+}
 
 
 
