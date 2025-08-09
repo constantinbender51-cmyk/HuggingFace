@@ -1,5 +1,5 @@
 // At the top of commandExecutor.js, alongside other imports
-import { clearTerminal, writeToActionPlan, notifyOperator, writeNotes } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
+import { clearTerminal, writeActionPlan, notifyOperator, writeNotes } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
 // commandExecutor.js
 export class CommandExecutor {
     constructor(krakenApi, messages) {
