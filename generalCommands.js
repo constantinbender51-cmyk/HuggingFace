@@ -1,5 +1,11 @@
 import systemPrompt from './systemPrompt.js';
 import sharedState from './state.js';
+import fetch from 'node-fetch';
+
+// Define the ntfy.sh topic for notifications.
+// It's good practice to keep this configurable, perhaps in an environment variable.
+const NTFY_TOPIC = 'constantin-bot-notifications-xyz123'; // Replace with your actual topic
+
 /**
  * Clears the terminal or console screen.
  * @returns {void}
@@ -54,14 +60,55 @@ export async function wait(parameters) {
   console.log(`Wait finished after ${minutes} minute(s).`);
 }
 
+
 /**
- * Sends a notification to the operator.
+ * Sends a notification to the operator via ntfy.sh.
+ * This function is asynchronous as it performs a network request.
+ *
  * @param {object} parameters - The parameters for the command.
- * @param {string} parameters.message - The message to send.
- * @returns {void}
+ * @param {string} parameters.message - The message content to send in the notification.
+ * @returns {Promise<void>} A promise that resolves when the notification has been sent, or rejects on error.
  */
-export function notifyOperator(parameters) {
-  console.log(`Function called: notifyOperator with message: "${parameters.message}"`);
-  // In a real application, this could send an email, a Slack message, or a push notification.
+export async function notifyOperator(parameters) {
+  const { message } = parameters;
+  const notificationTitle = 'Operator Notification';
+
+  if (!message) {
+    console.error("notifyOperator Error: 'message' parameter is missing or empty.");
+    return; // Exit if there is no message to send
+  }
+
+  console.log(`Sending notification to operator: "${message}"`);
+
+  try {
+    const response = await fetch(`https://ntfy.sh/${NTFY_TOPIC}`, {
+      method: 'POST',
+      headers: {
+        'Title': notificationTitle,
+        'Content-Type': 'text/plain', // Explicitly set content type
+      },
+      body: message
+    });
+
+    if (!response.ok) {
+      // ntfy.sh provides useful error messages in the response body
+      const errorBody = await response.text();
+      throw new Error(`Failed to send notification. Status: ${response.status}. Body: ${errorBody}`);
+    }
+
+    console.log('Notification sent successfully.');
+
+  } catch (error) {
+    console.error('Failed to execute notifyOperator:', error);
+    // Depending on the application's needs, you might want to re-throw the error
+    // or handle it silently.
+  }
 }
+
+// --- Example Usage ---
+// To use this function, you would call it like this:
+/*
+  notifyOperator({ message: "The user needs assistance with a critical issue." });
+*/
+
 
