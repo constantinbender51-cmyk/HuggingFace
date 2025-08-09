@@ -1,15 +1,4 @@
 /**
- * A command that does nothing, used for placeholder or delay actions.
- * @param {object} parameters - The parameters for the command.
- * @param {string} [parameters.reason] - The reason for doing nothing.
- * @returns {Promise<void>}
- */
-export async function doNothing(parameters) {
-  console.log(`Function called: doNothing with reason: "${parameters?.reason || 'No reason provided.'}"`);
-  // This function intentionally does nothing.
-}
-
-/**
  * Clears the terminal or console screen.
  * @returns {void}
  */
