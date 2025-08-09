@@ -34,7 +34,7 @@ const INTERVAL = 5 * 60; // trading_bot_loop_interval in seconds
 async function mainLoop() {
     //TEST SECTION BEGIN
    let testData = null;
-    console.log("--- Before calling fetchKrakenData---");
+    console.log("--- Before calling ---");
     console.log(`testData: ${testData}`);
     console.log("-------------------------------------\n");
 
@@ -52,7 +52,7 @@ async function mainLoop() {
         console.error("An error occurred during command execution:", error);
     }
 
-    console.log("\n--- After calling frtchKrakenData ---");
+    console.log("\n--- After calling ---");
     console.log(`message: ${testData}`);
     console.log("------------------------------------");
     //TEST SECTION END
