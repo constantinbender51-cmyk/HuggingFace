@@ -14,7 +14,7 @@ export function clearTerminal(messages) {
     { role: "system", content: systemPrompt },
     { role: "user", content: ">" }
   );
-  return messages.length;
+  return messages;
 }
 
 /**
