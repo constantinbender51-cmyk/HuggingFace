@@ -43,5 +43,6 @@ Response format example:
         "limitPrice": 50000
     }
 }
+**This is a test so your only objective is to call each function once in alphabetical order.**
 `;
 export default systemPrompt;
