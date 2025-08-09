@@ -146,7 +146,7 @@ export class KrakenFuturesApi {
     /** Returns system notifications. */
     getNotifications = () => this.request('GET', '/derivatives/api/v3/notifications');
 
-    async fetchKrakenData(pair = 'XBTUSD', interval = 60, since = null) {
+    export async fetchKrakenData(pair = 'XBTUSD', interval = 60, since = null) {
   try {
     // If 'since' is not provided, default to fetching data for the last 4 days.
     const sinceParam = since || Math.floor((Date.now() - (4 * 24 * 60 * 60 * 1000)) / 1000);
