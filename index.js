@@ -5,25 +5,23 @@ import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 import { CommandExecutor} from "./commandExecutor.js";
-import { 
-    clearTerminal, 
-    writeToActionPlan, 
-    wait, 
-    notifyOperator 
-} from './generalCommands.js';
-
 
 
 console.log("Starting application...");
 
 dotenv.config();
 
+let messages = [
+        { role: "system", content: systemPrompt },
+        { role: "user", content: ">" } // Initial trigger
+    ];
+
 // Initialize services
 const krakenApi = new KrakenFuturesApi(
     process.env.KRAKEN_API_KEY,
     process.env.KRAKEN_API_SECRET
 );
-const commandExecutor = new CommandExecutor(krakenApi);
+const commandExecutor = new CommandExecutor(krakenApi, messages);
 const aiClient = new OpenAI({
     baseURL: "https://router.huggingface.co/v1",
     apiKey: process.env.HF_TOKEN,
@@ -37,6 +35,7 @@ const rl = readline.createInterface({
 
 let actionPlan = {};
 const INTERVAL = 60; //trading_bot_loop_interval in seconds
+
 async function getAICommand(messages) {
     const response new KrakenFuturesApi(
     process.env.KRAKEN_API_KEY,
@@ -68,11 +67,40 @@ async function getAICommand(messages) {
 // 2. Call the function to update the action plan
 
 async function mainLoop() {
-    let messages = [
+    //TEST SECTION BEGIN
+    messages = [
         { role: "system", content: systemPrompt },
-        { role: "user", content: ">" } // Initial trigger
+        { role: "user", content: "> Some previous user input" },
+        { role: "assistant", content: '{ "command": "getOpenPositions", "parameters": {} }' },
+        { role: "user", content: "> Some other action" }
     ];
-    
+    console.log("--- Before calling clearTerminal ---");
+    console.log(`Message count: ${messages.length}`);
+    console.log(JSON.stringify(messages, null, 2));
+    console.log("-------------------------------------\n");
+
+    // 3. Define the command to be executed.
+    // The 'clearTerminal' command has no parameters.
+    const clearTerminalCommand = {
+        command: "clearTerminal",
+        parameters: {} 
+    };
+
+    try {
+        // 4. Execute the command.
+        const result = await commandExecutor.executeCommand(clearTerminalCommand);
+        console.log("Execution result:", result); // Should show { status: 'Terminal cleared' } or similar
+
+    } catch (error) {
+        console.error("An error occurred during command execution:", error);
+    }
+
+    console.log("\n--- After calling clearTerminal ---");
+    console.log(`Message count: ${messages.length}`);
+    // The 'clearTerminal' function in generalCommands.js should have modified the array.
+    console.log(JSON.stringify(messages, null, 2)); 
+    console.log("------------------------------------");
+    //TEST SECTION END
     let iteration = 0;
     const maxIterations = 8;
     
