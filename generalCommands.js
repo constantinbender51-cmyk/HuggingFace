@@ -24,14 +24,23 @@ export function clearTerminal(messages) {
  * @param {string} parameters.updatedActionPlan - The new content for the action plan.
  * @returns {void}
  */
-export function writeToActionPlan(parameters) {
-  console.log(`Function called: writeToActionPlan with plan: "${parameters.updatedActionPlan}"`);
-  // In a real implementation, you would update a global variable or write to a file.
-  sharedState.actionPlan = parameters;
-  console.log(`Action plan updated to: "${sharedState.actionPlan}"`);
-  return 'Action plan updated';
-}
 
+export function writeToActionPlan(parameters) {
+  if (typeof parameters.actionPlan !== 'string') {
+    throw new Error("The 'actionPlan' parameter must be a string.");
+  }
+  
+  // Update the actionPlan in the shared state object
+  sharedState.actionPlan = parameters.actionPlan;
+  
+  console.log(`Action Plan Updated: "${sharedState.actionPlan}"`);
+  
+  return { 
+    status: "Success", 
+    message: "Action plan has been updated.",
+    newActionPlan: sharedState.actionPlan 
+  };
+}
 /**
  * Pauses execution for a specified number of minutes.
  * @param {object} parameters - The parameters for the command.
