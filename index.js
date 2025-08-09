@@ -52,7 +52,7 @@ async function getAICommand(messages) {
 async function mainLoop() {
     //TEST SECTION BEGIN
     console.log("--- Before calling notifyOperator---");
-    console.log(`Act...: ${sharedState.message}`);
+    console.log(`Act...: ${sharedState.noted}`);
     console.log("-------------------------------------\n");
 
     const testCommand = {
@@ -71,7 +71,7 @@ async function mainLoop() {
 
     console.log("\n--- After calling notifyOperator ---");
     // 3. The 'messages' variable in this scope has now been changed directly.
-    console.log(`message: ${sharedState.message}`); 
+    console.log(`message: ${sharedState.notes}`); 
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
