@@ -29,6 +29,8 @@ export class CommandExecutor {
                 // Private endpoints
                 case 'getAccounts':
                     return await this.krakenApi.getAccounts();
+                case 'getAccountAvailableMargin': // <-- This is the new case you requested
+                    return this.krakenApi.getAccounts();
                 case 'getOpenPositions':
                     return await this.krakenApi.getOpenPositions();
                 case 'getOpenOrders':
