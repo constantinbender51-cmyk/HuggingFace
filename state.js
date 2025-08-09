@@ -1,6 +1,7 @@
 // state.js
 let sharedState = {
-  actionPlan: ""
+  actionPlan: "",
+  notes: "" // <-- Add this line to initialize the notes property
 };
 
 export default sharedState;
