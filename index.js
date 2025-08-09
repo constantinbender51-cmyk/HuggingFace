@@ -5,6 +5,7 @@ import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 import { CommandExecutor } from "./commandExecutor.js";
+const sharedState = require('./state.js');
 
 
 console.log("Starting application...");
@@ -51,7 +52,7 @@ async function getAICommand(messages) {
 async function mainLoop() {
     //TEST SECTION BEGIN
     console.log("--- Before calling writeAct...---");
-    console.log(`Act...: ${actionPlan}`);
+    console.log(`Act...: ${sharedState.actionPlan}`);
     console.log("-------------------------------------\n");
 
     const testCommand = {
@@ -70,7 +71,7 @@ async function mainLoop() {
 
     console.log("\n--- After calling acti... ---");
     // 3. The 'messages' variable in this scope has now been changed directly.
-    console.log(`Act...: ${actionPlan}`); 
+    console.log(`Act...: ${sharedState.actionPlan}`); 
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
