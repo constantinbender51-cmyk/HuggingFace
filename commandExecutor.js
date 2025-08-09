@@ -67,6 +67,9 @@ export class CommandExecutor {
                     return writeNotes(command.parameters);
                 case 'notifyOperator':
                     return await notifyOperator(command.parameters);
+                    // Inside the switch statement in commandExecutor.js
+                case 'clearActionPlan':
+                    return clearActionPlan();            
 
                 //SUPER special actions
                 case 'doNothing':
