@@ -57,7 +57,7 @@ async function mainLoop() {
 
     const testCommand = {
         command: "writeToActionPlan",
-        parameters: { "a. eat shit/nb. eat worms" } 
+        parameters: { "newActionPlan": "a. eat shit/nb. eat worms" } 
     };
 
     try {
