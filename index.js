@@ -12,7 +12,7 @@ import { callHuggingfaceAPI } from './ai.js'; // Import the new AI function
 console.log("Starting application...");
 
 let messages = [
-    { role: "autonomous_trading_agent", content: systemPrompt },
+    { role: "system", content: systemPrompt },
     { role: "user", content: ">" } // Initial trigger
 ];
 
