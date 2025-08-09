@@ -5,7 +5,7 @@ import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
 import { CommandExecutor } from "./commandExecutor.js";
-const sharedState = require('./state.js');
+import sharedState from './state.js';
 
 
 console.log("Starting application...");
