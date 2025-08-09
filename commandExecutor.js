@@ -61,7 +61,7 @@ export class CommandExecutor {
                     return { result: "Huggingface API called", parameters: command.parameters };
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
-                case 'writeToActionPlan':
+                case 'writeActionPlan':
                     return writeToActionPlan(command.parameters);
                 case 'writeNotes':
                     return writeNotes(command.parameters);
