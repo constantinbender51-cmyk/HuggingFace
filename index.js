@@ -56,8 +56,8 @@ async function mainLoop() {
     console.log("-------------------------------------\n");
 
     const testCommand = {
-        command: "notifyOperator",
-        parameters: { "message": "Completed trade" } 
+        command: "writeNotes",
+        parameters: { "notes": "I like your hair" } 
     };
 
     try {
