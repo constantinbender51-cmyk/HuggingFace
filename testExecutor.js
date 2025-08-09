@@ -80,10 +80,10 @@ async function runTests() {
         { command: 'getRecentOrders', parameters: { symbol: MOCK_DATA.symbol } },
         { command: 'getAccountLog', parameters: {} },
         { command: 'getTransfers', parameters: {} },
-        { command: 'batchOrder', parameters: { /* batchJson would go here */ } }
+        { command: 'batchOrder', parameters: { /* batchJson would go here */ } },
         
-        {
-        command: 'fetchKrakenData', 
+        
+        { command: 'fetchKrakenData', 
         parameters: { 
             pair: MOCK_DATA.pair, 
             interval: 60, // Hourly
