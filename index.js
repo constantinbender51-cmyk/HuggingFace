@@ -15,7 +15,6 @@ import {
 
 
 console.log("Starting application...");
-const executor = new CommandExecutor(new KrakenFuturesApi());
 
 dotenv.config();
 
@@ -39,6 +38,24 @@ const rl = readline.createInterface({
 let actionPlan = {};
 
 async function getAICommand(messages) {
+    const response new KrakenFuturesApi(
+    process.env.KRAKEN_API_KEY,
+    process.env.KRAKEN_API_SECRET
+);
+const commandExecutor = new CommandExecutor(krakenApi);
+const aiClient = new OpenAI({
+    baseURL: "https://router.huggingface.co/v1",
+    apiKey: process.env.HF_TOKEN,
+});
+
+// Create terminal interface
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+let actionPlan = {};
+async function getAICommand(messages) {
     const response = await aiClient.chat.completions.create({
         model: "openai/gpt-oss-120b:novita",
         messages,
@@ -53,7 +70,7 @@ async function getAICommand(messages) {
 async function mainLoop() {
     const messages = [
         { role: "system", content: systemPrompt },
-        { role: "user", content: "BEGIN" } // Initial trigger
+        { role: "user", content: ">" } // Initial trigger
     ];
     
     let iteration = 0;
@@ -68,21 +85,14 @@ async function mainLoop() {
             const command = await getAICommand(messages);
             console.log("> Command:", JSON.stringify(command, null, 2));
             
-            // Check for termination
-            if (command.command === "doNothing" && 
-                command.parameters.reason.toLowerCase().includes("complete")) {
-                console.log("\nSession complete:", command.parameters.reason);
-                break;
-            }
-            
             // Execute command
             const result = await commandExecutor.executeCommand(command);
             console.log("< Result:", JSON.stringify(result, null, 2));
             
             // Update message history
             messages.push(
-                { role: "assistant", content: JSON.stringify(command) },
-                { role: "user", content: JSON.stringify(result) }
+                { role: "autonomous_trading_agent", content: JSON.stringify(command) },
+                { role: "user", content: ">" + JSON.stringify(result) }
             );
             console.log(' wait 60 minutes ');
             await new Promise(resolve => setTimeout(resolve, 30 * 1000));
