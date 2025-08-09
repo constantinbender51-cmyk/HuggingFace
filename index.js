@@ -1,21 +1,20 @@
 // main.js
-import { OpenAI } from "openai";
 import dotenv from "dotenv";
+dotenv.config(); // Load environment variables at the very top
+
+import readline from 'readline/promises';
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
-import readline from 'readline/promises';
 import { CommandExecutor } from "./commandExecutor.js";
 import sharedState from './state.js';
-
+import { callHuggingfaceAPI } from './ai.js'; // Import the new AI function
 
 console.log("Starting application...");
 
-dotenv.config();
-
 let messages = [
-        { role: "autonomous_trading_agent", content: systemPrompt },
-        { role: "user", content: ">" } // Initial trigger
-    ];
+    { role: "autonomous_trading_agent", content: systemPrompt },
+    { role: "user", content: ">" } // Initial trigger
+];
 
 // Initialize services
 const krakenApi = new KrakenFuturesApi(
@@ -23,10 +22,6 @@ const krakenApi = new KrakenFuturesApi(
     process.env.KRAKEN_API_SECRET
 );
 const commandExecutor = new CommandExecutor(krakenApi, messages);
-const aiClient = new OpenAI({
-    baseURL: "https://router.huggingface.co/v1",
-    apiKey: process.env.HF_TOKEN,
-});
 
 // Create terminal interface
 const rl = readline.createInterface({
@@ -34,20 +29,7 @@ const rl = readline.createInterface({
     output: process.stdout
 });
 
-let actionPlan = {};
-const INTERVAL = 60; //trading_bot_loop_interval in seconds
-
-async function getAICommand(messages) {
-    const response = await aiClient.chat.completions.create({
-        model: "openai/gpt-oss-120b:novita",
-        messages,
-        response_format: { type: "json_object" }
-    });
-    return JSON.parse(response.choices[0].message.content);
-}
-// Define a variable to hold the action plan.
-
-// 2. Call the function to update the action plan
+const INTERVAL = 60; // trading_bot_loop_interval in seconds
 
 async function mainLoop() {
     //TEST SECTION BEGIN
@@ -57,39 +39,35 @@ async function mainLoop() {
 
     const testCommand = {
         command: "writeNotes",
-        parameters: { "notes": "I like your hair" } 
+        parameters: { "notes": "I like your hair" }
     };
 
     try {
-        // 2. Execute the command. This will now modify the 'messages' array directly.
-        // There is no need to capture the result because it's a direct mutation.
         await commandExecutor.executeCommand(testCommand);
-
     } catch (error) {
         console.error("An error occurred during command execution:", error);
     }
 
     console.log("\n--- After calling notifyOperator ---");
-    // 3. The 'messages' variable in this scope has now been changed directly.
-    console.log(`message: ${sharedState.notes}`); 
+    console.log(`message: ${sharedState.notes}`);
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
     const maxIterations = 8;
-    
+
     while (iteration < maxIterations) {
         iteration++;
         console.log(`\n[Cycle ${iteration}]`);
-        
+
         try {
-            // Get command from AI
-            const command = await getAICommand(messages);
+            // Get command from AI by calling the new function
+            const command = await callHuggingfaceAPI(messages);
             console.log("> Command:", JSON.stringify(command, null, 2));
-            
+
             // Execute command
             const result = await commandExecutor.executeCommand(command);
             console.log("< Result:", JSON.stringify(result, null, 2));
-            
+
             // Update message history
             messages.push(
                 { role: "autonomous_trading_agent", content: JSON.stringify(command) },
@@ -105,8 +83,9 @@ async function mainLoop() {
         }
     }
 }
+
 async function main() {
-    try {        
+    try {
         await mainLoop();
     } catch (error) {
         console.error("Fatal error:", error);
@@ -116,13 +95,3 @@ async function main() {
 }
 
 main();
-
-
-
-
-
-
-
-
-
-
