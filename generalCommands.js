@@ -26,9 +26,6 @@ export function clearTerminal(messages) {
  */
 
 export function writeToActionPlan(parameters) {
-  if (typeof parameters.actionPlan !== 'string') {
-    throw new Error("The 'actionPlan' parameter must be a string.");
-  }
   
   // Update the actionPlan in the shared state object
   sharedState.actionPlan = parameters.actionPlan;
