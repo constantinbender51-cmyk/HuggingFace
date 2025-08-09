@@ -33,23 +33,27 @@ const INTERVAL = 5 * 60; // trading_bot_loop_interval in seconds
 
 async function mainLoop() {
     //TEST SECTION BEGIN
-    console.log("--- Before calling notifyOperator---");
-    console.log(`Act...: ${sharedState.noted}`);
+   let testData = null;
+    console.log("--- Before calling fetchKrakenData---");
+    console.log(`testData: ${trstData}`);
     console.log("-------------------------------------\n");
 
     const testCommand = {
-        command: "writeNotes",
-        parameters: { "notes": "I like your hair" }
+        command: "fetchKrakenData",
+        parameters: { "pair": "XBT/USD",
+                      "interval": "1440",
+                      "since": ""
+                    }
     };
 
     try {
-        await commandExecutor.executeCommand(testCommand);
+        testData = await commandExecutor.executeCommand(testCommand);
     } catch (error) {
         console.error("An error occurred during command execution:", error);
     }
 
-    console.log("\n--- After calling notifyOperator ---");
-    console.log(`message: ${sharedState.notes}`);
+    console.log("\n--- After calling frtchKrakenData ---");
+    console.log(`message: ${testData}`);
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
