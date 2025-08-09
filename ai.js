@@ -19,6 +19,7 @@ export async function callHuggingfaceAPI(messages) {
         messages,
         response_format: { type: "json_object" }
     });
-    console.log("in the function " + ${ JSON.parse(response.choices[0].message.content) });
+    // Corrected using template literals
+    console.log(`in the function ${JSON.stringify(response.choices[0].message.content)}`);
     return JSON.parse(response.choices[0].message.content);
 }
