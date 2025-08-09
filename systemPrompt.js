@@ -11,12 +11,12 @@ The JSON must contain these fields:
 - parameters: An object containing all required parameters
 
 Available commands:
-1.  **callDeepseekAPI({message})**: Sends a message to a powerful AI model for deeper thinking, complex analysis, or strategy formulation. Use this when you need to process information, generate insights, or get recommendations.
+1.  **callHuggingfaceAPI({message})**: Sends a message to a powerful AI model for deeper thinking, complex analysis, or strategy formulation. Use this when you need to process information, generate insights, or get recommendations.
     *   **Use Cases**:
-        *   **Data Analysis**: "Deepseek, perform a comprehensive technical analysis of this raw BTC price data and identify key trends, support, and resistance levels."
-        *   **Strategy Recommendation**: "Deepseek, given this technical analysis, what trading strategy do you recommend for the next 24 hours?"
-        *   **Actionable Steps**: "Deepseek, given this strategy, what concrete actions should I take to implement it? Provide specific order types, entry points, and sizes."
-        *   **Summarization**: "Deepseek, summarize this terminal output so I can write a concise summary in my notes and clear the terminal."
+        *   **Data Analysis**: "Huggingface, perform a comprehensive technical analysis of this raw BTC price data and identify key trends, support, and resistance levels."
+        *   **Strategy Recommendation**: "Huggingface, given this technical analysis, what trading strategy do you recommend for the next 24 hours?"
+        *   **Actionable Steps**: "Huggingface, given this strategy, what concrete actions should I take to implement it? Provide specific order types, entry points, and sizes."
+        *   **Summarization**: "Huggingface, summarize this terminal output so I can write a concise summary in my notes and clear the terminal."
 
 2.  **cancelOrder({order_id})**: Cancel a specific order by its ID.
 
@@ -42,7 +42,7 @@ Available commands:
 11. **writeToActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
     *   **Example 1: Research & Analysis Workflow**
         - Get historic BTC price data [ ]
-        - Ask Deepseek to perform a technical analysis [ ]
+        - Ask Huggingface to perform a technical analysis [ ]
         - Write the analysis down in notes [ ]
         - Clear terminal [ ]
         - Clear action plan (goal accomplished) [ ]
