@@ -57,7 +57,7 @@ async function mainLoop() {
     ];
     
     let iteration = 0;
-    const maxIterations = 20;
+    const maxIterations = 8;
     
     while (iteration < maxIterations) {
         iteration++;
