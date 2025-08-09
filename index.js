@@ -68,7 +68,7 @@ async function getAICommand(messages) {
 // 2. Call the function to update the action plan
 
 async function mainLoop() {
-    const messages = [
+    let messages = [
         { role: "system", content: systemPrompt },
         { role: "user", content: ">" } // Initial trigger
     ];
