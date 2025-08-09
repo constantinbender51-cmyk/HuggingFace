@@ -65,7 +65,7 @@ export class CommandExecutor {
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeActionPlan':
-                    return writeToActionPlan(command.parameters);
+                    return writeActionPlan(command.parameters);
                 case 'writeNotes':
                     return writeNotes(command.parameters);
                 case 'notifyOperator':
