@@ -1,3 +1,4 @@
+import systemPrompt from './systemPrompt.js';
 /**
  * Clears the terminal or console screen.
  * @returns {void}
