@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import readline from 'readline/promises';
-import { CommandExecutor} from "./commandExecutor.js";
+import { CommandExecutor } from "./commandExecutor.js";
 
 
 console.log("Starting application...");
@@ -50,6 +50,13 @@ async function getAICommand(messages) {
 
 async function mainLoop() {
     //TEST SECTION BEGIN
+        console.log(`Initial action plan: "${sharedState.actionPlan}"`);
+
+// 2. Call the function from the other file to update the variable
+        writeToActionPlan("This is the new action plan set from generalCommands.js.");
+
+// 3. Log the state again to see the change
+        console.log(`Final action plan: "${sharedState.actionPlan}"`);
     //TEST SECTION END
     let iteration = 0;
     const maxIterations = 8;
