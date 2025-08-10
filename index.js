@@ -51,7 +51,7 @@ async function mainLoop() {
     }
 
     console.log("\n--- After calling ---");
-    console.log(`message: ${testData}`);
+    console.log(`message: ${testData.data}`);
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
