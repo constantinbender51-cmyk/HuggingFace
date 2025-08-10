@@ -60,6 +60,7 @@ Available commands:
         *   10080 (for one week)
 
 11. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
+    *   **actionPlan** (string, required): A string describing the plan, often formatted as a multi-line checklist.
     *   **Example 1: Research & Analysis Workflow**
         - Get historic XBTUSD price data [ ]
         - Ask Huggingface to perform a technical analysis [ ]
