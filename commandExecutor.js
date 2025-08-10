@@ -79,10 +79,10 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                         role: 'user', 
                         content: command.parameters.prompt || JSON.stringify(command.parameters) // Use a 'prompt' field or stringify the whole object
                     };
-
+                    
                     // 2. Combine with existing message history
                     const fullMessageHistory = [...this.messages, newUserMessage];
-                    
+                    console.log(fullMessageHistory);
                     // 3. Call the API with the complete history
                     return await callHuggingfaceAPI(fullMessageHistory); 
                 case 'clearTerminal':
