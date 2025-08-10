@@ -51,7 +51,7 @@ async function mainLoop() {
     }
 
     console.log("\n--- After calling ---");
-    console.log(`message: ${testData.data}`);
+    console.log(`message: ${JSON.stringify(testData, null, 2)}`);
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
