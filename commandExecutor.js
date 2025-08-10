@@ -71,7 +71,7 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                 // Special actions
                 case 'callHuggingfaceAPI':
                     // Implement your Huggingface API call here
-                    return return callHuggingfaceAPI (command.parameters); 
+                    return callHuggingfaceAPI (command.parameters); 
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeActionPlan':
