@@ -39,10 +39,8 @@ async function mainLoop() {
     console.log("-------------------------------------\n");
 
     const testCommand = {
-        command: "fetchKrakenData",
-        parameters: { "pair": "XBTUSD",
-                      "interval": "1440",
-                      "since": ""
+        command: "getAccountAvailableMargin",
+        parameters: { 
                     }
     };
 
