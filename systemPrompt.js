@@ -37,12 +37,12 @@ Available commands:
 4.  **getAccountAvailableMargin()**: Get the account's available margin.
 
 5.  **getHistoricalPriceData({pair, interval, since})**: Get historical price data for a given trading pair.
-    *   **pair**: The trading pair, e.g., "BTCUSD", "ETHUSD", "SOLUSD".
+    *   **pair**: The trading pair, e.g., 'BTCUSD', 'ETHUSD', 'SOLUSD'.
     *   **interval**: The time frame interval in **seconds**. For example:
-        *   `60` (1 minute)
-        *   `3600` (1 hour)
-        *   `86400` (1 day)
-        *   `604800` (1 week)
+        *   '60' (1 minute)
+        *   '3600' (1 hour)
+        *   '86400' (1 day)
+        *   '604800' (1 week)
     *   **since**: A timestamp to start the data from.
 
 6.  **getOpenOrders()**: Get all open orders.
@@ -52,16 +52,16 @@ Available commands:
 8.  **notifyOperator({message})**: Send a notification message to the human operator.
 
 9.  **sendOrder({orderType, symbol, side, size, limitPrice, stopPrice})**: Place a new order.
-    *   For a limit order (lmt), stopPrice is not necessary.
-    *   For a market order (mkt), limitPrice and stopPrice are not necessary.
-    *   For a stop-limit order (stp), both limitPrice and stopPrice are required.
+    *   For a limit order ('lmt'), 'stopPrice' is not necessary.
+    *   For a market order ('mkt'), 'limitPrice' and 'stopPrice' are not necessary.
+    *   For a stop-limit order ('stp'), both 'limitPrice' and 'stopPrice' are required.
 
 10. **wait({minutes})**: Pause execution for a specified number of minutes.
     *   **minutes**: A number representing the duration to wait. For example:
-        *   `5` (for 5 minutes)
-        *   `60` (for 1 hour)
-        *   `1440` (for 24 hours)
-        *   `10080` (for one week)
+        *   '5' (for 5 minutes)
+        *   '60' (for 1 hour)
+        *   '1440' (for 24 hours)
+        *   '10080' (for one week)
 
 11. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
     *   **Example 1: Research & Analysis Workflow**
@@ -79,7 +79,7 @@ Available commands:
         - Wait a day [ ]
         - Clear action plan (goal accomplished) [ ]
 
-12. **writeNotes({notes, append})**: Write or append to an internal "scratchpad". Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
+12. **writeNotes({notes, append})**: Write or append to an internal 'scratchpad'. Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
     *   **Use Cases**:
         *   Summarize the results of an API call (e.g., "Current BTC price is $X, margin is Y").
         *   Jot down calculations (e.g., "Target entry price: $51,200, stop-loss: $50,800").
@@ -92,7 +92,7 @@ Response format example:
     "command": "sendOrder",
     "parameters": {
         "orderType": "lmt",
-        "symbol": "pf_xbtusd",
+        "symbol": "pi_xbtusd",
         "side": "buy",
         "size": 1,
         "limitPrice": 50000
