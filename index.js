@@ -100,7 +100,7 @@ async function mainLoop() {
 
         try {
             // Get a command from the AI
-            const command = await callHuggingfaceAPI(messages);
+            const command = await callOpenRouterAPI(messages);
             console.log("> Command:", JSON.stringify(command, null, 2));
 
             // Execute the received command
