@@ -23,7 +23,7 @@ The JSON must contain these fields:
 - parameters: An object containing all required parameters
 
 Available commands:
-1.  **callHuggingfaceAPI({message})**: Sends a message to a powerful AI model for deeper thinking, complex analysis, or strategy formulation. Use this when you need to process information, generate insights, or get recommendations.
+1.  **callAI({message})**: Sends a message to a powerful AI model for deeper thinking, complex analysis, or strategy formulation. Use this when you need to process information, generate insights, or get recommendations.
     *   **Use Cases**:
         *   **Data Analysis**: "Huggingface, perform a comprehensive technical analysis of this raw XBTUSD price data and identify key trends, support, and resistance levels."
         *   **Strategy Recommendation**: "Huggingface, given this technical analysis, what trading strategy do you recommend for the next 24 hours?"
