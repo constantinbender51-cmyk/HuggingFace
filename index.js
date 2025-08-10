@@ -22,13 +22,13 @@ dotenv.config();
  * The interval in seconds for the main trading loop.
  * @type {number}
  */
-const TRADING_LOOP_INTERVAL = 30 * 60;
+const TRADING_LOOP_INTERVAL = 2* 60;
 
 /**
  * The maximum number of iterations for the main loop.
  * @type {number}
  */
-const MAX_ITERATIONS = 999999;
+const MAX_ITERATIONS = 10;
 
 /**
  * The message history for the AI conversation.
