@@ -22,7 +22,7 @@ export class CommandExecutor {
                     return await this.krakenApi.getOrderbook(command.parameters);
                 case 'getHistory':
                     return await this.krakenApi.getHistory(command.parameters);
-                case 'fetchKrakenData': // <-- Add the new case here
+                case 'getHistoricalBTCPriceData': // <-- Add the new case here
                     return await this.krakenApi.fetchKrakenData(command.parameters);
                     
                     
