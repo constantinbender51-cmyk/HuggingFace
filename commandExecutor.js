@@ -81,7 +81,7 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                     };
                     
                     // 2. Combine with existing message history
-                    const fullMessageHistory = [...this.messages, newUserMessage];
+                    const fullMessageHistory = newUserMessage;
                     console.log(fullMessageHistory);
                     // 3. Call the API with the complete history
                     const response = await callHuggingfaceAPI(fullMessageHistory); 
