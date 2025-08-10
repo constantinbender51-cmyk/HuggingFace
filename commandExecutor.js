@@ -30,7 +30,7 @@ export class CommandExecutor {
                 case 'getAccounts':
                     return await this.krakenApi.getAccounts();
                 case 'getAccountAvailableMargin': // <-- This is the new case you requested
-                    return this.krakenApi.getAccounts().accounts;
+                    return this.krakenApi.getAccounts();
                 case 'getOpenPositions':
                     return await this.krakenApi.getOpenPositions();
                 case 'getOpenOrders':
