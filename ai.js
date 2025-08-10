@@ -36,7 +36,7 @@ export async function callOpenRouterAPI(messages) {
         console.log("Sending request to AI...");
 
         const response = await aiClient.chat.completions.create({
-            model: "openai/gpt-3.5-turbo", // Updated to a more standard and reliable model
+            model: "openai/gpt-oss-20b:free", // Updated to a more standard and reliable model
             messages: messages,
             response_format: { type: "json_object" }
         });
