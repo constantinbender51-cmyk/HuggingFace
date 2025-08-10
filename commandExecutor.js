@@ -76,7 +76,7 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                     
                     // 1. Create a new message object from the parameters
                     const newUserMessage = { 
-                        { role: "system", 
+                        role: "system", 
                         content: "..."},
                         { role: 'user', 
                         content: command.parameters.prompt || JSON.stringify(command.parameters)
