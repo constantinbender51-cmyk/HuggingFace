@@ -88,7 +88,7 @@ Response format example:
     "command": "sendOrder",
     "parameters": {
         "orderType": "lmt",
-        "symbol": "pi_xbtusd",
+        "symbol": "pf_xbtusd",
         "side": "buy",
         "size": 1,
         "limitPrice": 50000
