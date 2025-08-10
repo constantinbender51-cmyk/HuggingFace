@@ -22,7 +22,7 @@ dotenv.config();
  * The interval in seconds for the main trading loop.
  * @type {number}
  */
-const TRADING_LOOP_INTERVAL = 5 * 60;
+const TRADING_LOOP_INTERVAL = 30 * 60;
 
 /**
  * The maximum number of iterations for the main loop.
