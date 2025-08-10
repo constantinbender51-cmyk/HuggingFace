@@ -72,7 +72,7 @@ async function mainLoop() {
 
             // Update message history
             messages.push(
-                { role: "assistant", content: JSON.stringify(command) },
+                { role: "assistant", content: ">" + JSON.stringify(command) },
                 { role: "user", content: ">" + JSON.stringify(result) }
             );
             await new Promise(resolve => setTimeout(resolve, INTERVAL * 1000));
