@@ -29,8 +29,21 @@ export class CommandExecutor {
                 // Private endpoints
                 case 'getAccounts':
                     return await this.krakenApi.getAccounts();
-                case 'getAccountAvailableMargin': // <-- This is the new case you requested
-                    return this.krakenApi.getAccounts();
+                // In commandExecutor.js
+
+// ... (inside the switch statement)
+
+case 'getAccountAvailableMargin': { // Use braces to create a new block scope
+    const accountData = await this.krakenApi.getAccounts();
+    if (accountData && accountData.accounts && typeof accountData.accounts.flex !== 'undefined') {
+        return { flex: accountData.accounts.flex };
+    } else {
+        // Handle cases where the data is not in the expected format
+        throw new Error("Could not retrieve 'flex' from account data.");
+    }
+}
+
+// ... (rest of the switch statement)
                 case 'getOpenPositions':
                     return await this.krakenApi.getOpenPositions();
                 case 'getOpenOrders':
