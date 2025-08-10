@@ -61,11 +61,11 @@ export function clearTerminal(messages) {
 export function writeActionPlan(parameters) {
     const { actionPlan } = parameters || {};
 
-    if (typeof actionPlan !== 'string') {
+    /*if (typeof actionPlan !== 'string') {
         const errorMsg = "writeActionPlan Error: 'actionPlan' parameter must be a non-empty string.";
         console.error(errorMsg);
         return { status: "Error", message: errorMsg };
-    }
+    }*/
 
     sharedState.actionPlan = actionPlan;
     console.log(`Action Plan Updated: "${sharedState.actionPlan}"`);
