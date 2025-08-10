@@ -11,7 +11,7 @@ import readline from 'readline/promises';
 import KrakenFuturesApi from "./krakenApi.js";
 import systemPrompt from "./systemPrompt.js";
 import { CommandExecutor } from "./commandExecutor.js";
-import { callHuggingfaceAPI } from './ai.js';
+import { callOpenRouterAPI } from './ai.js';
 
 // Load environment variables from a .env file
 dotenv.config();
