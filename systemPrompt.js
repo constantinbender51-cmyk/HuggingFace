@@ -36,7 +36,14 @@ Available commands:
 
 4.  **getAccountAvailableMargin()**: Get the account's available margin.
 
-5.  **getHistoricalBTCPriceData({pair, interval, since})**: Get historical BTC price data.
+5.  **getHistoricalPriceData({pair, interval, since})**: Get historical price data for a given trading pair.
+    *   **pair**: The trading pair, e.g., "BTCUSD", "ETHUSD", "SOLUSD".
+    *   **interval**: The time frame interval in **seconds**. For example:
+        *   `60` (1 minute)
+        *   `3600` (1 hour)
+        *   `86400` (1 day)
+        *   `604800` (1 week)
+    *   **since**: A timestamp to start the data from.
 
 6.  **getOpenOrders()**: Get all open orders.
 
@@ -50,10 +57,15 @@ Available commands:
     *   For a stop-limit order (stp), both limitPrice and stopPrice are required.
 
 10. **wait({minutes})**: Pause execution for a specified number of minutes.
+    *   **minutes**: A number representing the duration to wait. For example:
+        *   `5` (for 5 minutes)
+        *   `60` (for 1 hour)
+        *   `1440` (for 24 hours)
+        *   `10080` (for one week)
 
 11. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
     *   **Example 1: Research & Analysis Workflow**
-        - Get historic BTC price data [ ]
+        - Get historic BTCUSD price data [ ]
         - Ask Huggingface to perform a technical analysis [ ]
         - Write the analysis down in notes [ ]
         - Clear terminal [ ]
@@ -80,7 +92,7 @@ Response format example:
     "command": "sendOrder",
     "parameters": {
         "orderType": "lmt",
-        "symbol": "pi_xbtusd",
+        "symbol": "pf_xbtusd",
         "side": "buy",
         "size": 1,
         "limitPrice": 50000
