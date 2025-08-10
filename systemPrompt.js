@@ -48,21 +48,23 @@ Available commands:
 
 7.  **getOpenPositions()**: Get all open positions.
 
-8.  **notifyOperator({message})**: Send a notification message to the human operator.
+8.  **getTickers()**: Get the latest ticker information for all available instruments.
 
-9.  **sendOrder({orderType, symbol, side, size, limitPrice, stopPrice})**: Place a new order.
+9.  **notifyOperator({message})**: Send a notification message to the human operator.
+
+10. **sendOrder({orderType, symbol, side, size, limitPrice, stopPrice})**: Place a new order.
     *   For a limit order ('lmt'), 'stopPrice' is not necessary.
     *   For a market order ('mkt'), 'limitPrice' and 'stopPrice' are not necessary.
     *   For a stop-limit order ('stp'), both 'limitPrice' and 'stopPrice' are required.
 
-10. **wait({minutes})**: Pause execution for a specified number of minutes.
+11. **wait({minutes})**: Pause execution for a specified number of minutes.
     *   **minutes**: A number representing the duration to wait. For example:
         *   5 (for 5 minutes)
         *   60 (for 1 hour)
         *   1440 (for 24 hours)
         *   10080 (for one week)
 
-11. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
+12. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
     *   **Example 1: Research & Analysis Workflow**
         - Get historic XBTUSD price data [ ]
         - Ask Huggingface to perform a technical analysis [ ]
@@ -78,7 +80,7 @@ Available commands:
         - Wait a day [ ]
         - Clear action plan (goal accomplished) [ ]
 
-12. **writeNotes({notes, append})**: Write or append to an internal 'scratchpad'. Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
+13. **writeNotes({notes, append})**: Write or append to an internal 'scratchpad'. Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
     *   **Use Cases**:
         *   Summarize the results of an API call (e.g., "Current XBTUSD price is $X, margin is Y").
         *   Jot down calculations (e.g., "Target entry price: $51,200, stop-loss: $50,800").
@@ -93,7 +95,7 @@ Response format example:
         "orderType": "lmt",
         "symbol": "pf_xbtusd",
         "side": "buy",
-        "size": 1,
+        "size": 0.0001,
         "limitPrice": 50000
     }
 }
