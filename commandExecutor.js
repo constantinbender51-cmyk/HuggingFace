@@ -100,31 +100,35 @@ export class CommandExecutor {
 
                 // --- General Purpose & Bot Control Commands ---
                 // --- General Purpose & Bot Control Commands ---
+// --- General Purpose & Bot Control Commands ---
 case 'callAI': {
-    // This command initiates a new, isolated AI session to solve a sub-problem.
-    // It allows the main AI to delegate tasks to a fresh instance of itself
-    // with a new, purpose-built system message.
+    // This command delegates a complex thinking task to an external AI model.
+    // 'TradingBrain' uses this to analyze data, formulate strategies, or summarize information.
 
-    // 1. Define the new system message for this specific sub-task.
-    // This sets the persona and instructions for the new, temporary AI agent.
-    // A default is provided for robustness.
-    const systemMessageContent = command.parameters?.systemMessage || "You are a helpful assistant. Fulfill the user's request accurately.";
-    const systemMessage = { role: 'system', content: systemMessageContent };
-
-    // 2. Define the user prompt, which is the specific task for the sub-agent.
-    const userPromptContent = command.parameters?.prompt;
-    if (!userPromptContent) {
-        throw new Error("The 'callAI' command requires a 'prompt' parameter.");
+    // 1. Extract the message from the parameters, as specified in the system prompt.
+    const messageForExternalAI = command.parameters?.message;
+    if (!messageForExternalAI) {
+        throw new Error("The 'callAI' command requires a 'message' parameter.");
     }
-    const userMessage = { role: 'user', content: userPromptContent };
 
-    // 3. Construct the message history for the new session.
-    // It starts fresh, containing only the new system message and the new user prompt.
-    const newMessages = [systemMessage, userMessage];
+    // 2. Construct the message payload for the external AI call.
+    // We create a new, isolated session for this sub-task.
+    // It starts with a generic system prompt, as its role is to be a general-purpose reasoning engine.
+    const newMessages = [
+        { 
+            role: 'system', 
+            content: 'You are a powerful, general-purpose AI assistant. Please provide a clear, detailed, and helpful response to the user\'s request.' 
+        },
+        { 
+            role: 'user', 
+            content: messageForExternalAI 
+        }
+    ];
 
-    console.log("Initiating a new, isolated AI session with context:", newMessages);
-    
-    // 4. Execute the call and return the result to the main logic.
+    console.log("Delegating task to external AI with payload:", newMessages);
+
+    // 3. Make the API call and return the response to 'TradingBrain'.
+    // The result of this call will become part of the history that 'TradingBrain' sees in its next cycle.
     return await callOpenRouterAPI(newMessages);
 }
 
