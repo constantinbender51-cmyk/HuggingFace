@@ -51,7 +51,7 @@ async function mainLoop() {
     }
 
     console.log("\n--- After calling ---");
-    console.log(`message: ${JSON.stringify(testData, null, 2)}`);
+    console.log(`message: ${JSON.stringify(testData.accounts.flex, null, 2)}`);
     console.log("------------------------------------");
     //TEST SECTION END
     let iteration = 0;
