@@ -70,8 +70,21 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                     
                 // Special actions
                 case 'callHuggingfaceAPI':
-                    // Implement your Huggingface API call here
-                    return callHuggingfaceAPI (command.parameters); 
+                    // --- CORRECTED IMPLEMENTATION ---
+                    // The 'command.parameters' might contain a new user message or prompt.
+                    // You should add it to the existing history before making the call.
+                    
+                    // 1. Create a new message object from the parameters
+                    const newUserMessage = { 
+                        role: 'user', 
+                        content: command.parameters.prompt || JSON.stringify(command.parameters) // Use a 'prompt' field or stringify the whole object
+                    };
+
+                    // 2. Combine with existing message history
+                    const fullMessageHistory = [...this.messages, newUserMessage];
+                    
+                    // 3. Call the API with the complete history
+                    return await callHuggingfaceAPI(fullMessageHistory); 
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeActionPlan':
