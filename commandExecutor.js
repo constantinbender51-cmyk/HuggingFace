@@ -99,14 +99,35 @@ export class CommandExecutor {
                     return await this.krakenApi.batchOrder(command.parameters);
 
                 // --- General Purpose & Bot Control Commands ---
-                case 'callAI': {
-                    // This command allows the AI to prompt itself for complex, multi-step reasoning.
-                    const prompt = command.parameters?.prompt || JSON.stringify(command.parameters);
-                    const newMessages = [{ role: 'user', content: prompt }];
-                    console.log("Making a recursive AI call with new prompt:", newMessages);
-                    // Note: Using a fresh message history to avoid confusion with the main loop's history.
-                    return await callOpenRouterAPI(newMessages);
-                }
+                // --- General Purpose & Bot Control Commands ---
+case 'callAI': {
+    // This command initiates a new, isolated AI session to solve a sub-problem.
+    // It allows the main AI to delegate tasks to a fresh instance of itself
+    // with a new, purpose-built system message.
+
+    // 1. Define the new system message for this specific sub-task.
+    // This sets the persona and instructions for the new, temporary AI agent.
+    // A default is provided for robustness.
+    const systemMessageContent = command.parameters?.systemMessage || "You are a helpful assistant. Fulfill the user's request accurately.";
+    const systemMessage = { role: 'system', content: systemMessageContent };
+
+    // 2. Define the user prompt, which is the specific task for the sub-agent.
+    const userPromptContent = command.parameters?.prompt;
+    if (!userPromptContent) {
+        throw new Error("The 'callAI' command requires a 'prompt' parameter.");
+    }
+    const userMessage = { role: 'user', content: userPromptContent };
+
+    // 3. Construct the message history for the new session.
+    // It starts fresh, containing only the new system message and the new user prompt.
+    const newMessages = [systemMessage, userMessage];
+
+    console.log("Initiating a new, isolated AI session with context:", newMessages);
+    
+    // 4. Execute the call and return the result to the main logic.
+    return await callOpenRouterAPI(newMessages);
+}
+
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeActionPlan':
