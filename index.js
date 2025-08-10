@@ -132,7 +132,7 @@ async function mainLoop() {
 async function main() {
     console.log("Starting application...");
     try {
-        await runTest(); // Optional: run a test before starting the main loop
+        //await runTest(); // Optional: run a test before starting the main loop
         await mainLoop();
     } catch (error) {
         console.error("A fatal error occurred:", error);
