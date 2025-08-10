@@ -20,5 +20,5 @@ export async function callHuggingfaceAPI(messages) {
         response_format: { type: "json_object" }
     });
     // Corrected using template literals
-    return JSON.parse(response.choices[0].message.content);
+    return JSON.parse(response);
 }
