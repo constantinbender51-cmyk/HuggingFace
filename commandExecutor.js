@@ -35,13 +35,8 @@ export class CommandExecutor {
 
 case 'getAccountAvailableMargin': { // Use braces to create a new block scope
     const accountData = await this.krakenApi.getAccounts();
-    if (accountData && accountData.accounts && typeof accountData.accounts.flex !== 'undefined') {
-        return { flex: accountData.accounts.flex };
-    } else {
-        // Handle cases where the data is not in the expected format
-        throw new Error("Could not retrieve 'flex' from account data.");
-    }
-}
+            return  accountData.accounts.flex ;
+   }
 
 // ... (rest of the switch statement)
                 case 'getOpenPositions':
