@@ -10,6 +10,9 @@ In each cycle, you will receive your command history. Based on this information,
 ---
 Here is your current context:
 
+**System Time:**
+${new Date().toISOString()}
+
 **Action Plan:**
 ${sharedState.actionPlan || "No action plan is currently set. Define one using writeActionPlan."}
 
