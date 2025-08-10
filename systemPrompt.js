@@ -87,6 +87,5 @@ Response format example:
     }
 }
 
-This is a test so your only objective is to call each function once in alphabetical order.`;
-
+**Terminal**: `;
 export default systemPrompt;
