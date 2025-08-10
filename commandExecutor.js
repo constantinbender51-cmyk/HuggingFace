@@ -75,13 +75,14 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                     // You should add it to the existing history before making the call.
                     
                     // 1. Create a new message object from the parameters
-                    const newUserMessage = { 
-                        role: "system", 
-                        content: "..."},
+                    const newUserMessage = [
+                        { role: "system", 
+                        content: "..."
+                        },
                         { role: 'user', 
                         content: command.parameters.prompt || JSON.stringify(command.parameters)
                         }// Use a 'prompt' field or stringify the whole object
-                    };
+                    ];
                     
                     // 2. Combine with existing message history
                     const fullMessageHistory = newUserMessage;
