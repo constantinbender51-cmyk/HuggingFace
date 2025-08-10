@@ -97,40 +97,39 @@ export class CommandExecutor {
                     return await this.krakenApi.cancelAllOrdersAfter(command.parameters);
                 case 'batchOrder':
                     return await this.krakenApi.batchOrder(command.parameters);
-
                 // --- General Purpose & Bot Control Commands ---
-                // --- General Purpose & Bot Control Commands ---
-// --- General Purpose & Bot Control Commands ---
-case 'callAI': {
-    // This command delegates a complex thinking task to an external AI model.
-    // 'TradingBrain' uses this to analyze data, formulate strategies, or summarize information.
+                case 'callAI': {
+                    // This command delegates a complex thinking task to an external AI model.
+                    // 'TradingBrain' uses this to analyze data, formulate strategies, or summarize information.
 
-    // 1. Extract the message from the parameters, as specified in the system prompt.
-    const messageForExternalAI = command.parameters?.message;
-    if (!messageForExternalAI) {
-        throw new Error("The 'callAI' command requires a 'message' parameter.");
-    }
+                    // 1. Extract the new message from the parameters.
+                    const newMessageContent = command.parameters?.message;
+                    if (!newMessageContent) {
+                        throw new Error("The 'callAI' command requires a 'message' parameter.");
+                    }
 
-    // 2. Construct the message payload for the external AI call.
-    // We create a new, isolated session for this sub-task.
-    // It starts with a generic system prompt, as its role is to be a general-purpose reasoning engine.
-    const newMessages = [
-        { 
-            role: 'system', 
-            content: 'You are a powerful, general-purpose AI assistant. Please provide a clear, detailed, and helpful response to the user\'s request.' 
-        },
-        { 
-            role: 'user', 
-            content: messageForExternalAI 
-        }
-    ];
+                    // 2. Construct the message payload for the external AI call.
+                    // It starts with a new system prompt, followed by the existing conversation history
+                    // (excluding the original system message), and finally the new user message.
+                    const newMessages = [
+                        { 
+                            role: 'system', 
+                            content: 'You are a powerful, general-purpose AI assistant. Please provide a clear, detailed, and helpful response to the user\'s request.' 
+                        },
+                        // Spread the existing messages, skipping the first (original system message).
+                        ...this.messages.slice(1),
+                        { 
+                            role: 'user', 
+                            content: newMessageContent 
+                        }
+                    ];
 
-    console.log("Delegating task to external AI with payload:", newMessages);
+                    console.log("Delegating task to external AI with payload:", newMessages);
 
-    // 3. Make the API call and return the response to 'TradingBrain'.
-    // The result of this call will become part of the history that 'TradingBrain' sees in its next cycle.
-    return await callOpenRouterAPI(newMessages);
-}
+                    // 3. Make the API call and return the response to 'TradingBrain'.
+                    // The result of this call will become part of the history that 'TradingBrain' sees in its next cycle.
+                    return await callOpenRouterAPI(newMessages);
+                }
 
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
