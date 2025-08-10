@@ -36,13 +36,13 @@ Available commands:
 
 4.  **getAccountAvailableMargin()**: Get the account's available margin.
 
-5.  **getHistoricalPriceData({pair, interval, since})**: Get historical price data for a given trading pair.
+5.  **getHistoricalBTCPriceData({pair, interval, since})**: Get historical BTC price data.
     *   **pair**: The trading pair, e.g., 'BTCUSD', 'ETHUSD', 'SOLUSD'.
-    *   **interval**: The time frame interval in **seconds**. For example:
-        *   '60' (1 minute)
-        *   '3600' (1 hour)
-        *   '86400' (1 day)
-        *   '604800' (1 week)
+    *   **interval**: The time frame interval in **minutes**. For example:
+        *   '1' (1 minute)
+        *   '60' (1 hour)
+        *   '1440' (1 day)
+        *   '10080' (1 week)
     *   **since**: A timestamp to start the data from.
 
 6.  **getOpenOrders()**: Get all open orders.
