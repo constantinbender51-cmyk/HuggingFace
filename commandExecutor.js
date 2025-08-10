@@ -1,6 +1,6 @@
 // At the top of commandExecutor.js, alongside other imports
 import { clearTerminal, writeActionPlan, notifyOperator, writeNotes, clearActionPlan } from './generalCommands.js'; // Assuming it's in a file named generalCommands.js
-// commandExecutor.js
+import { callHuggingfaceAPI } from './ai.js';// commandExecutor.js
 export class CommandExecutor {
     constructor(krakenApi, messages) {
         this.krakenApi = krakenApi;
@@ -71,7 +71,7 @@ case 'getAccountAvailableMargin': { // Use braces to create a new block scope
                 // Special actions
                 case 'callHuggingfaceAPI':
                     // Implement your Huggingface API call here
-                    return { result: "Huggingface API called", parameters: command.parameters };
+                    return return callHuggingfaceAPI (command.parameters); 
                 case 'clearTerminal':
                     return clearTerminal(this.messages);
                 case 'writeActionPlan':
