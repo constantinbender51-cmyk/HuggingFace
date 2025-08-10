@@ -4,8 +4,8 @@ import { OpenAI } from "openai";
 // Initialize the AI client
 // The API key is read from process.env, which should be populated by dotenv in main.js
 const aiClient = new OpenAI({
-    baseURL: "https://router.huggingface.co/v1",
-    apiKey: process.env.HF_TOKEN,
+    baseURL: "https://openrouter.ai/api/v1",
+    apiKey: process.env.OR_TOKEN,
 });
 
 /**
@@ -15,7 +15,7 @@ const aiClient = new OpenAI({
  */
 export async function callHuggingfaceAPI(messages) {
     const response = await aiClient.chat.completions.create({
-        model: "openai/gpt-oss-120b:novita",
+        model: "openai/gpt-oss-20b:free",
         messages,
         response_format: { type: "json_object" }
     });
