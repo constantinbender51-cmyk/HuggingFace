@@ -101,5 +101,5 @@ Response format example:
     }
 }
 
-**Terminal**: \`;
+**Terminal**: `;
 export default systemPrompt;
