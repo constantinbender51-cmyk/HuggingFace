@@ -37,7 +37,7 @@ Available commands:
 
 3.  **clearTerminal()**: Clear the terminal display to keep your workspace clean.
 
-4.  **getAccountAvailableMargin()**: Get the account's available margin.
+4.  **getAccountAvailableMargin()**: Get the account's available margin in flexible currencies (e.g., USD). This represents 10% of the AI's maximum spending limit, as the account can trade with up to 10x leverage.
 
 5.  **getHistoricalBTCPriceData({pair, interval, since})**: Get historical price data.
     *   **pair** (string, required): Asset pair to get data for. Example: 'XBTUSD'.
@@ -56,6 +56,7 @@ Available commands:
     *   For a limit order ('lmt'), 'stopPrice' is not necessary.
     *   For a market order ('mkt'), 'limitPrice' and 'stopPrice' are not necessary.
     *   For a stop-limit order ('stp'), both 'limitPrice' and 'stopPrice' are required.
+    *   For the 'pf_xbtusd' symbol, the 'size' is specified in BTC. The smallest tradable unit of size is 0.0001.
 
 11. **wait({minutes})**: Pause execution for a specified number of minutes.
     *   **minutes**: A number representing the duration to wait. For example:
