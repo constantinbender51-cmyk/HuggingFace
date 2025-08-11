@@ -64,21 +64,25 @@ Available commands:
         *   1440 (for 24 hours)
         *   10080 (for one week)
 
-12. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete to achieve a goal. It serves as your roadmap.
-    *   **Example 1: Research & Analysis Workflow**
-        - Get historic XBTUSD price data [ ]
-        - Ask Huggingface to perform a technical analysis [ ]
-        - Write the analysis down in notes [ ]
-        - Clear terminal [ ]
-        - Clear action plan (goal accomplished) [ ]
-    *   **Example 2: Live Trading Workflow**
-        - Send market order to enter a position [ ]
-        - Implement stop loss order [ ]
-        - Implement take profit order [ ]
-        - Write trade rationale down in notes [ ]
-        - Clear terminal [ ]
-        - Wait a day [ ]
-        - Clear action plan (goal accomplished) [ ]
+12. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete. It serves as your roadmap. Use `[x]` for completed tasks, `[>]` for the current task, and `[ ]` for pending tasks.
+    *   **Simple Example**:
+        \`\`\`
+        - Gather Data [x]
+        - Define Strategy [x]
+        - Execute Strategy [>]
+        - Note Outcome [ ]
+        - Clear Terminal and Action Plan [ ]
+        \`\`\`
+    *   **Complex (Nested) Example**:
+        \`\`\`
+        - Task 1: Market Analysis [x]
+        - Task 2: Trade Execution [>]
+            - Subtask 2.1: Initial Position Entry [x]
+            - Subtask 2.2: Monitor and Adjust [>]
+            - Subtask 2.3: Exit Position [ ]
+        - Task 3: Post-Trade Review [ ]
+        - Clear Action Plan [ ]
+        \`\`\`
 
 13. **writeNotes({notes, append})**: Write or append to an internal 'scratchpad'. Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
     *   **Use Cases**:
@@ -100,5 +104,5 @@ Response format example:
     }
 }
 
-**Terminal**: `;
+**Terminal**: \`;
 export default systemPrompt;
