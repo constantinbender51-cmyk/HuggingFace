@@ -115,7 +115,11 @@ async function mainLoop() {
                 { role: "assistant", content: `>${JSON.stringify(command)}` },
                 { role: "user", content: `>${JSON.stringify(result)}` }
             );
-            
+            const totalChars = messages.reduce((acc, msg) => {
+                return acc + JSON.stringify(msg).length;
+            }, 0);
+            console.log(`> Message history now contains ${totalChars} characters.`);
+
             // Wait for the specified interval before the next cycle
             await new Promise(resolve => setTimeout(resolve, TRADING_LOOP_INTERVAL * 1000));
         } catch (error) {
@@ -124,13 +128,7 @@ async function mainLoop() {
                 role: "user",
                 content: `ERROR: ${error.message}`
             });
-            
         }
-        const totalChars = messages.reduce((acc, msg) => {
-                return acc + JSON.stringify(msg).length;
-            }, 0);
-            console.log(`> Message history now contains ${totalChars} characters.`);
-        
     }
 }
 
