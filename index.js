@@ -102,8 +102,6 @@ async function mainLoop() {
             // Get a command from the AI
             const command = await callOpenRouterAPI(messages);
             console.log("> Command:", JSON.stringify(command, null, 2));
-            console.log(`> Result Length: ${resultString.length} characters`);
-
             // Execute the received command
             const result = await commandExecutor.executeCommand(command);
             const resultString = JSON.stringify(result, null, 2); // 
