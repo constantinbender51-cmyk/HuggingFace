@@ -73,12 +73,12 @@ Available commands:
         - Note Outcome [ ]
         - Clear Terminal and Action Plan [ ]
     *   **Complex (Nested) Example Plan**:
-        - Task 1: Market Analysis [x]
-        - Task 2: Trade Execution [>]
-            - Subtask 2.1: Initial Position Entry [x]
-            - Subtask 2.2: Monitor and Adjust [>]
-            - Subtask 2.3: Exit Position [ ]
-        - Task 3: Post-Trade Review [ ]
+        - Task_1 [x]
+        - Task_2 [>]
+            - Subtask_2.1 [x]
+            - Subtask_2.2 [>]
+            - Subtask_2.3 [ ]
+        - Task_3 [ ]
         - Clear Action Plan [ ]
 
 13. **writeNotes({notes, append})**: Write or append to an internal 'scratchpad'. Use this to record your observations, calculations, or intermediate thoughts. This is your internal monologue and memory.
