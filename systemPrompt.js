@@ -64,7 +64,8 @@ Available commands:
         *   1440 (for 24 hours)
         *   10080 (for one week)
 
-12. **writeActionPlan({actionPlan})**: Update your high-level strategic action plan. This plan should outline the sequence of major steps you intend to complete. It serves as your roadmap. Use `[x]` for completed tasks, `[>]` for the current task, and `[ ]` for pending tasks.
+12. **writeActionPlan({actionPlan})**: Defines or updates your high-level strategic plan. This plan serves as your roadmap.
+    *   **When to Use**: You can write to the action plan at any time to update task status (`[x]`, `[>]`, `[ ]`), declare failure/clear the plan, or edit it to respond to an error or changing market conditions.
     *   **Simple Example**:
         \`\`\`
         - Gather Data [x]
