@@ -1,9 +1,8 @@
-// ai.js
 /**
  * @file AI module for interacting with the OpenAI API via OpenRouter.
  * @description This module handles the communication with the AI model to get trading commands.
  * @author Your Name
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 import { OpenAI } from "openai";
@@ -43,11 +42,16 @@ export async function callOpenRouterAPI(messages) {
 
         // Validate the response structure
         if (!response || !response.choices || response.choices.length === 0) {
+            // If the structure is invalid, log the entire response for debugging
+            console.log("Invalid response structure. Full response:", response);
             throw new Error("Invalid response structure from AI API.");
         }
 
         const messageContent = response.choices[0].message.content;
+        
+        // If the message content is empty, log the full response and throw an error
         if (!messageContent) {
+            console.log("AI response content is empty. Full response:", response);
             throw new Error("AI response content is empty.");
         }
 
