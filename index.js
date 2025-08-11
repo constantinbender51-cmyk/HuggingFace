@@ -102,17 +102,20 @@ async function mainLoop() {
             // Get a command from the AI
             const command = await callOpenRouterAPI(messages);
             console.log("> Command:", JSON.stringify(command, null, 2));
+            console.log(`> Result Length: ${resultString.length} characters`);
 
             // Execute the received command
             const result = await commandExecutor.executeCommand(command);
+            const resultString = JSON.stringify(result, null, 2); // 
             console.log("< Result:", JSON.stringify(result, null, 2));
+            console.log(`> Result Length: ${resultString.length} characters`);
 
             // Update the message history for the next iteration
             messages.push(
                 { role: "assistant", content: `>${JSON.stringify(command)}` },
                 { role: "user", content: `>${JSON.stringify(result)}` }
             );
-
+            
             // Wait for the specified interval before the next cycle
             await new Promise(resolve => setTimeout(resolve, TRADING_LOOP_INTERVAL * 1000));
         } catch (error) {
@@ -121,7 +124,13 @@ async function mainLoop() {
                 role: "user",
                 content: `ERROR: ${error.message}`
             });
+            
         }
+        const totalChars = messages.reduce((acc, msg) => {
+                return acc + JSON.stringify(msg).length;
+            }, 0);
+            console.log(`> Message history now contains ${totalChars} characters.`);
+        
     }
 }
 
