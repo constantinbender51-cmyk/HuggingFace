@@ -2,7 +2,7 @@
  * @file AI module for interacting with the OpenAI API via OpenRouter.
  * @description This module handles the communication with the AI model to get trading commands.
  * @author Your Name
- * @version 1.0.1
+ * @version 1.0.2
  */
 
 import { OpenAI } from "openai";
@@ -32,7 +32,10 @@ const aiClient = new OpenAI({
  */
 export async function callOpenRouterAPI(messages) {
     try {
-        console.log("Sending request to AI...");
+        // --- Calculate and display character count ---
+        const totalCharacters = messages.reduce((acc, msg) => acc + (msg.content ? msg.content.length : 0), 0);
+        console.log(`Sending request to AI with ${messages.length} messages (Total characters: ${totalCharacters})...`);
+        // --- End of new code ---
 
         const response = await aiClient.chat.completions.create({
             model: "openai/gpt-oss-20b:free", // Updated to a more standard and reliable model
